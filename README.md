@@ -1,6 +1,6 @@
 # PrismTabs website
 
-Marketing site and manual for [PrismTabs](https://github.com/yendrrek/chromatabs), a JetBrains
+Marketing site and manual for [PrismTabs](https://github.com/yendrrek/prismtabs), a JetBrains
 plugin. Static HTML/CSS, no build step, no external dependencies.
 
 - `index.html` — landing page
