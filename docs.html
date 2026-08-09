@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Docs — Chromatabs</title>
-  <meta name="description" content="The Chromatabs manual: assigning tabs to colour groups, active groups, the Tab Groups tool window, collapsing groups, customising the palette, and compatibility." />
+  <title>Docs — PrismTabs</title>
+  <meta name="description" content="The PrismTabs manual: assigning tabs to colour groups, active groups, the Tab Groups tool window, collapsing groups, customising the palette, and compatibility." />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
@@ -18,7 +18,7 @@
           <circle cx="27" cy="15" r="6.5" fill="#F6AEA9"/>
           <circle cx="20" cy="27" r="6.5" fill="#A8DAB5"/>
         </svg>
-        Chromatabs
+        PrismTabs
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5h14M2 9h14M2 13.5h14"/></svg>
@@ -52,18 +52,18 @@
     <div class="docs-content">
       <h1>Manual</h1>
       <p class="lead">
-        Everything Chromatabs does, in the order you'll actually use it. There's nothing to
+        Everything PrismTabs does, in the order you'll actually use it. There's nothing to
         configure to get started — install the plugin and right-click a tab.
       </p>
 
       <section class="docs-section" id="getting-started">
         <h2>Getting started</h2>
         <p>
-          Install Chromatabs from the JetBrains Marketplace inside your IDE:
-          <span class="kbd-path">Settings → Plugins → Marketplace</span>, search "Chromatabs",
+          Install PrismTabs from the JetBrains Marketplace inside your IDE:
+          <span class="kbd-path">Settings → Plugins → Marketplace</span>, search "PrismTabs",
           click Install, then restart the IDE if prompted.
         </p>
-        <p>Chromatabs needs no setup beyond installation. The moment it's enabled you can right-click any open editor tab to start colouring it.</p>
+        <p>PrismTabs needs no setup beyond installation. The moment it's enabled you can right-click any open editor tab to start colouring it.</p>
         <div class="callout">
           <strong>Requirement:</strong> IntelliJ Platform 2024.2 or newer. See
           <a href="#compatibility">Compatibility</a> for which IDEs that covers.
@@ -133,7 +133,7 @@
       <section class="docs-section" id="collapse">
         <h2>Collapsing &amp; expanding</h2>
         <p>
-          Chromatabs has no way to visually shrink a group into a chip the way Chrome does — the
+          PrismTabs has no way to visually shrink a group into a chip the way Chrome does — the
           platform doesn't expose one. Instead, <strong>collapse means "close and remember"</strong>:
         </p>
         <ul>
@@ -146,7 +146,7 @@
       <section class="docs-section" id="palette">
         <h2>Customising the palette</h2>
         <p>
-          Chromatabs ships 8 presets, each with a light-theme and dark-theme colour chosen to stay
+          PrismTabs ships 8 presets, each with a light-theme and dark-theme colour chosen to stay
           legible against IntelliJ's own tab painter — including on unselected tabs, which the
           platform renders at roughly half tint strength.
         </p>
@@ -165,7 +165,7 @@
         </table>
         <p>
           To change a preset's name or colours, open
-          <span class="kbd-path">Settings → Tools → Chromatabs</span>. Each row has an editable
+          <span class="kbd-path">Settings → Tools → PrismTabs</span>. Each row has an editable
           name field and a colour picker for the light and dark variant. Changes apply immediately
           to every group using that preset; a <strong>Restore Defaults</strong> link resets
           everything back to the built-in palette in one step.
@@ -186,7 +186,7 @@
       <section class="docs-section" id="compatibility">
         <h2>Compatibility</h2>
         <p>
-          Chromatabs depends only on <code class="mono">com.intellij.modules.platform</code>, so it
+          PrismTabs depends only on <code class="mono">com.intellij.modules.platform</code>, so it
           isn't tied to one product — it runs in IntelliJ IDEA, WebStorm, PyCharm, GoLand,
           PhpStorm, Rider, RubyMine, CLion, DataGrip, Android Studio, and any other IDE built on
           the same platform, from <strong>2024.2</strong> onward. It's tested against both the
@@ -199,7 +199,7 @@
 
         <div class="faq-item">
           <h3>Why does an unselected tab look more faded than the selected one?</h3>
-          <p>IntelliJ's own tab painter blends unselected tab colours to roughly half strength against the background — that's a platform behaviour, not something Chromatabs can override. The palette's dark presets are deliberately saturated enough to stay clearly visible even after that blend.</p>
+          <p>IntelliJ's own tab painter blends unselected tab colours to roughly half strength against the background — that's a platform behaviour, not something PrismTabs can override. The palette's dark presets are deliberately saturated enough to stay clearly visible even after that blend.</p>
         </div>
 
         <div class="faq-item">
@@ -214,7 +214,7 @@
 
         <div class="faq-item">
           <h3>Can tab text colour change along with the background?</h3>
-          <p>No. The relevant platform API for tab foreground colour is experimental and tied to file status, not to Chromatabs' groups, so only the tab background is themeable.</p>
+          <p>No. The relevant platform API for tab foreground colour is experimental and tied to file status, not to PrismTabs' groups, so only the tab background is themeable.</p>
         </div>
 
         <div class="faq-item">
@@ -233,7 +233,7 @@
           <circle cx="27" cy="15" r="6.5" fill="#F6AEA9"/>
           <circle cx="20" cy="27" r="6.5" fill="#A8DAB5"/>
         </svg>
-        © 2026 Chromatabs
+        © 2026 PrismTabs
       </div>
       <nav class="footer-links">
         <a href="docs.html">Docs</a>
