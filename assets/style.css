@@ -15,6 +15,8 @@
   --accent-pink: #f090c3;
   --accent-green: #6fcf9a;
   --focus-ring: #7fb1f7;
+  --on-bright: #0a0b0d;
+  --nav-bg: rgba(10, 11, 13, 0.82);
 
   --preset-grey-l: #dadce0;
   --preset-grey-d: #5f6368;
@@ -38,6 +40,31 @@
   --radius-lg: 20px;
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 32px -16px rgba(0, 0, 0, 0.6);
   --max-width: 1120px;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --bg-elevated: #ffffff;
+  --bg-card: #f2f3f5;
+  --bg-card-hover: #e9eaed;
+  --border: rgba(15, 17, 21, 0.08);
+  --border-strong: rgba(15, 17, 21, 0.14);
+  --text: #16181d;
+  --text-muted: #52586a;
+  --text-dim: #7b8191;
+  --accent-blue: #2e6fd9;
+  --accent-purple: #7c4fd6;
+  --accent-pink: #c94b8e;
+  --accent-green: #1f8f5f;
+  --focus-ring: #2e6fd9;
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 12px 32px -18px rgba(15, 17, 21, 0.22);
+  --on-bright: #ffffff;
+  --nav-bg: rgba(250, 250, 250, 0.82);
+
+  color-scheme: light;
 }
 
 * {
@@ -88,7 +115,7 @@ svg {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 11, 13, 0.82);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
@@ -143,7 +170,7 @@ svg {
   padding: 8px 16px;
   border-radius: 999px;
   background: var(--text);
-  color: #0a0b0d !important;
+  color: var(--on-bright) !important;
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
@@ -156,6 +183,43 @@ svg {
 
 .nav-toggle {
   display: none;
+}
+
+/* ---------- Theme toggle ---------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--bg-card);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun,
+:root:not([data-theme]) .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
 }
 
 /* ---------- Buttons ---------- */
@@ -181,7 +245,7 @@ svg {
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-  color: #0a0b0d;
+  color: var(--on-bright);
 }
 
 .btn-primary:hover {
@@ -344,7 +408,7 @@ svg {
   gap: 7px;
   padding: 9px 12px;
   font-size: 12.5px;
-  color: #e7e9ec;
+  color: var(--text);
   background: var(--bg-elevated);
   border-bottom: 2px solid transparent;
   white-space: nowrap;

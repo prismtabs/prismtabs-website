@@ -7,6 +7,13 @@
   <meta name="description" content="PrismTabs brings a tab-colouring workflow to IntelliJ IDEA and every JetBrains IDE: right-click a tab, pick a colour, manage groups from a dedicated tool window." />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="assets/style.css" />
+  <script>
+    (function () {
+      var stored = localStorage.getItem('prismtabs-theme');
+      var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
 
@@ -29,6 +36,10 @@
         <a href="docs.html" aria-current="page">Docs</a>
         <a href="mailto:yendrrek@protonmail.com" class="nav-cta">Get in touch</a>
       </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="3.6"/><path d="M9 1.5v2M9 14.5v2M3.5 3.5l1.4 1.4M13.1 13.1l1.4 1.4M1.5 9h2M14.5 9h2M3.5 14.5l1.4-1.4M13.1 4.9l1.4-1.4"/></svg>
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 10.2A6.3 6.3 0 117.8 3a5 5 0 007.2 7.2z"/></svg>
+      </button>
     </div>
   </header>
 
@@ -305,6 +316,22 @@
         var expanded = navToggle.getAttribute('aria-expanded') === 'true';
         navToggle.setAttribute('aria-expanded', String(!expanded));
         document.body.classList.toggle('nav-open', !expanded);
+      });
+    }
+
+    var themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      var setThemeLabel = function (theme) {
+        var next = theme === 'light' ? 'dark' : 'light';
+        themeToggle.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      };
+      setThemeLabel(document.documentElement.getAttribute('data-theme'));
+      themeToggle.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        var next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('prismtabs-theme', next);
+        setThemeLabel(next);
       });
     }
   </script>
