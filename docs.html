@@ -48,6 +48,7 @@
       <div class="toc-title">On this page</div>
       <nav>
         <a href="#getting-started">Getting started</a>
+        <a href="#licensing">Licensing &amp; the free trial</a>
         <a href="#assigning">Assigning a tab</a>
         <a href="#groups">Working with groups</a>
         <a href="#active-group">Active groups</a>
@@ -81,6 +82,31 @@
         </div>
       </section>
 
+      <section class="docs-section" id="licensing">
+        <h2>Licensing &amp; the free trial</h2>
+        <p>
+          There is no plan to choose when you install. Every copy of PrismTabs follows the same
+          three stages:
+        </p>
+        <ul>
+          <li><strong>Day 0 — install.</strong> Straight from the JetBrains Marketplace. No account, no card, and no licence key to enter.</li>
+          <li><strong>Days 1–30 — everything unlocked.</strong> The complete Pro feature set is available to everyone, free, for the first 30 days. Nothing is held back during the trial.</li>
+          <li><strong>Day 31 onward — Free, or $10/year.</strong> Subscribe to keep the Pro features, or carry on indefinitely with the Free tier below.</li>
+        </ul>
+        <p>The split between the two tiers is feature-based, never a cap on how many groups you can make:</p>
+        <ul>
+          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour), persistence across restarts, and assignments that follow a file through a rename or move.</li>
+          <li><strong>Pro</strong> — the <a href="#tool-window">Tab Groups tool window</a>, <a href="#collapse">collapse/expand</a>, <a href="#active-group">active-group auto-join</a>, and <a href="#palette">custom palette editing</a>.</li>
+        </ul>
+        <div class="callout">
+          <strong>Never a hard lockout.</strong> When the trial ends or a subscription lapses,
+          PrismTabs simply drops back to the Free tier — your existing group assignments, names,
+          and colours are untouched, and Pro features come straight back the moment you subscribe.
+          Nothing is deleted and nothing stops working outright.
+        </div>
+        <p>PrismTabs Pro is $10/year, billed through the JetBrains Marketplace. See <a href="index.html#pricing">Pricing</a> for the full breakdown.</p>
+      </section>
+
       <section class="docs-section" id="assigning">
         <h2>Assigning a tab to a group</h2>
         <p>Right-click any editor tab. The first item in the context menu is <strong>Tab Group…</strong>, which opens the colour swatch popup:</p>
@@ -108,7 +134,7 @@
       </section>
 
       <section class="docs-section" id="active-group">
-        <h2>Active groups</h2>
+        <h2>Active groups <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           Mark one group <strong>active</strong> and every file you open afterwards joins it
           automatically — useful when you're about to dive into a feature and want everything you
@@ -124,7 +150,7 @@
       </section>
 
       <section class="docs-section" id="tool-window">
-        <h2>The Tab Groups tool window</h2>
+        <h2>The Tab Groups tool window <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           Open the <strong>Tab Groups</strong> stripe on the right-hand edge of the IDE window (or
           find it under <span class="kbd-path">View → Tool Windows → Tab Groups</span>). It lists
@@ -142,7 +168,7 @@
       </section>
 
       <section class="docs-section" id="collapse">
-        <h2>Collapsing &amp; expanding</h2>
+        <h2>Collapsing &amp; expanding <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           PrismTabs has no way to visually shrink a group into a chip — the
           platform doesn't expose one. Instead, <strong>collapse means "close and remember"</strong>:
@@ -155,11 +181,12 @@
       </section>
 
       <section class="docs-section" id="palette">
-        <h2>Customising the palette</h2>
+        <h2>Customising the palette <span class="tier-tag tier-tag--pro">Pro to edit</span></h2>
         <p>
           PrismTabs ships 8 presets, each with a light-theme and dark-theme colour chosen to stay
           legible against IntelliJ's own tab painter — including on unselected tabs, which the
-          platform renders at roughly half tint strength.
+          platform renders at roughly half tint strength. The 8 presets are free to use as they
+          ship; renaming or repainting them is a Pro feature (see below).
         </p>
         <table class="docs-table">
           <thead><tr><th>Preset</th><th>Light</th><th>Dark</th></tr></thead>
@@ -231,6 +258,21 @@
         <div class="faq-item">
           <h3>What happens to a group's files when I delete the group?</h3>
           <p>Only the assignment is removed — every member tab loses its colour and its group membership, but the files themselves are completely unaffected. Deleting a group always asks for confirmation first.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is there a one-time, perpetual licence option?</h3>
+          <p>No — PrismTabs Pro is a $10/year subscription only. See <a href="#licensing">Licensing &amp; the free trial</a> for what stays free without one.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens when the 30-day trial ends?</h3>
+          <p>Without an active subscription, PrismTabs drops to the Free tier: the Tab Groups tool window, collapse/expand, active-group auto-join, and palette editing become unavailable until you subscribe. Nothing is deleted, and the core tab-colouring workflow keeps working.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens if my Pro subscription lapses after a year?</h3>
+          <p>The same downgrade as an expired trial — back to the Free tier, not a frozen or crippled state. Renewing brings the Pro features straight back with your existing groups and assignments intact.</p>
         </div>
       </section>
     </div>
