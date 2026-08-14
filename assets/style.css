@@ -115,10 +115,23 @@ svg {
   position: sticky;
   top: 0;
   z-index: 50;
+  border-bottom: 1px solid var(--border);
+}
+
+/*
+ * Blur lives on a pseudo-element rather than .site-nav itself: backdrop-filter
+ * establishes a containing block for fixed-position descendants, which would
+ * trap the mobile .nav-links panel inside this 68px header instead of the
+ * viewport.
+ */
+.site-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: var(--nav-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
 }
 
 .site-nav .wrap {
