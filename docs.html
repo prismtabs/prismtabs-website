@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docs — PrismTabs</title>
+  <meta name="description" content="The PrismTabs manual: assigning tabs to colour groups, active groups, the Tab Groups tool window, collapsing groups, customising the palette, and compatibility." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script>
+    (function () {
+      var stored = localStorage.getItem('prismtabs-theme');
+      var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="13" cy="15" r="6.5" fill="#AECBFA"/>
+          <circle cx="27" cy="15" r="6.5" fill="#F6AEA9"/>
+          <circle cx="20" cy="27" r="6.5" fill="#A8DAB5"/>
+        </svg>
+        PrismTabs
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5h14M2 9h14M2 13.5h14"/></svg>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="docs.html" aria-current="page">Docs</a>
+        <a href="mailto:yendrrek@protonmail.com" class="nav-cta">Get in touch</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="3.6"/><path d="M9 1.5v2M9 14.5v2M3.5 3.5l1.4 1.4M13.1 13.1l1.4 1.4M1.5 9h2M14.5 9h2M3.5 14.5l1.4-1.4M13.1 4.9l1.4-1.4"/></svg>
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 10.2A6.3 6.3 0 117.8 3a5 5 0 007.2 7.2z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="wrap docs-shell">
+    <aside class="docs-toc">
+      <div class="toc-title">On this page</div>
+      <nav>
+        <a href="#getting-started">Getting started</a>
+        <a href="#licensing">Licensing &amp; the free trial</a>
+        <a href="#assigning">Assigning a tab</a>
+        <a href="#groups">Working with groups</a>
+        <a href="#active-group">Active groups</a>
+        <a href="#tool-window">Tab Groups tool window</a>
+        <a href="#collapse">Collapsing &amp; expanding</a>
+        <a href="#palette">Customising the palette</a>
+        <a href="#persistence">Persistence &amp; renames</a>
+        <a href="#compatibility">Compatibility</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </aside>
+
+    <div class="docs-content">
+      <h1>Manual</h1>
+      <p class="lead">
+        Everything PrismTabs does, in the order you'll actually use it. There's nothing to
+        configure to get started — install the plugin and right-click a tab.
+      </p>
+
+      <section class="docs-section" id="getting-started">
+        <h2>Getting started</h2>
+        <p>
+          Install PrismTabs from the JetBrains Marketplace inside your IDE:
+          <span class="kbd-path">Settings → Plugins → Marketplace</span>, search "PrismTabs",
+          click Install, then restart the IDE if prompted.
+        </p>
+        <p>PrismTabs needs no setup beyond installation. The moment it's enabled you can right-click any open editor tab to start colouring it.</p>
+        <div class="callout">
+          <strong>Requirement:</strong> IntelliJ Platform 2024.2 or newer. See
+          <a href="#compatibility">Compatibility</a> for which IDEs that covers.
+        </div>
+      </section>
+
+      <section class="docs-section" id="licensing">
+        <h2>Licensing &amp; the free trial</h2>
+        <p>
+          There is no plan to choose when you install. Every copy of PrismTabs follows the same
+          three stages:
+        </p>
+        <ul>
+          <li><strong>Day 0 — install.</strong> Straight from the JetBrains Marketplace. No account, no card, and no licence key to enter.</li>
+          <li><strong>Days 1–30 — everything unlocked.</strong> The complete Pro feature set is available to everyone, free, for the first 30 days. Nothing is held back during the trial.</li>
+          <li><strong>Day 31 onward — Free, or $10/year.</strong> Subscribe to keep the Pro features, or carry on indefinitely with the Free tier below.</li>
+        </ul>
+        <p>The split between the two tiers is feature-based, never a cap on how many groups you can make:</p>
+        <ul>
+          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour), persistence across restarts, and assignments that follow a file through a rename or move.</li>
+          <li><strong>Pro</strong> — the <a href="#tool-window">Tab Groups tool window</a>, <a href="#collapse">collapse/expand</a>, <a href="#active-group">active-group auto-join</a>, and <a href="#palette">custom palette editing</a>.</li>
+        </ul>
+        <div class="callout">
+          <strong>Never a hard lockout.</strong> When the trial ends or a subscription lapses,
+          PrismTabs simply drops back to the Free tier — your existing group assignments, names,
+          and colours are untouched, and Pro features come straight back the moment you subscribe.
+          Nothing is deleted and nothing stops working outright.
+        </div>
+        <p>PrismTabs Pro is $10/year, billed through the JetBrains Marketplace. See <a href="index.html#pricing">Pricing</a> for the full breakdown.</p>
+      </section>
+
+      <section class="docs-section" id="assigning">
+        <h2>Assigning a tab to a group</h2>
+        <p>Right-click any editor tab. The first item in the context menu is <strong>Tab Group…</strong>, which opens the colour swatch popup:</p>
+        <ul>
+          <li><strong>Click a preset dot</strong> — assigns the tab to a shared, colour-named group (e.g. "Blue"), creating it on first use. This is the fast path: repeated clicks across files on the same colour converge on one group instead of spawning duplicates.</li>
+          <li><strong>Add to Group…</strong> — lists your existing named groups; pick one to add the tab to it.</li>
+          <li><strong>New Group…</strong> — pick a colour, then name the group. Cancelling the name prompt aborts the whole flow — no group is created.</li>
+          <li><strong>Remove from Group</strong> — only shown when the tab is currently assigned; clears the assignment and the tint.</li>
+        </ul>
+      </section>
+
+      <section class="docs-section" id="groups">
+        <h2>Working with groups</h2>
+        <p>
+          Open <strong>Tab Group…</strong> on any tab already in a group, then choose
+          <strong>Manage Groups…</strong> to pick a group and act on it:
+        </p>
+        <ul>
+          <li><strong>Rename…</strong> — change the group's display name.</li>
+          <li><strong>Recolour…</strong> — pick a new preset colour; every member tab repaints immediately.</li>
+          <li><strong>Mark as Active Group</strong> / <strong>Clear Active Group</strong> — see <a href="#active-group">Active groups</a>.</li>
+          <li><strong>Delete Group</strong> — asks for confirmation first, then clears the assignment from every member tab (the files themselves are untouched).</li>
+        </ul>
+        <p>You can also manage groups directly from the <a href="#tool-window">Tab Groups tool window</a>, which offers the same actions without needing an already-grouped tab to start from.</p>
+      </section>
+
+      <section class="docs-section" id="active-group">
+        <h2>Active groups <span class="tier-tag tier-tag--pro">Pro</span></h2>
+        <p>
+          Mark one group <strong>active</strong> and every file you open afterwards joins it
+          automatically — useful when you're about to dive into a feature and want everything you
+          touch colour-coded without assigning each tab by hand.
+        </p>
+        <div class="callout">
+          <strong>The active group doesn't survive a restart, by design.</strong> An assignment is
+          something you explicitly chose; "active" is closer to a recording toggle you'd likely
+          forget was on. Restarting the IDE always clears it, so files never get auto-coloured for
+          a reason you can no longer see. Groups marked active are labelled <em>(active)</em>
+          wherever they appear in the popup.
+        </div>
+      </section>
+
+      <section class="docs-section" id="tool-window">
+        <h2>The Tab Groups tool window <span class="tier-tag tier-tag--pro">Pro</span></h2>
+        <p>
+          Open the <strong>Tab Groups</strong> stripe on the right-hand edge of the IDE window (or
+          find it under <span class="kbd-path">View → Tool Windows → Tab Groups</span>). It lists
+          every group with its colour dot, name, member count, and whether it's collapsed. A
+          toolbar and matching right-click context menu offer Collapse/Expand, Rename…, Recolour…,
+          and Delete Group for the selected group.
+        </p>
+        <p>
+          This panel exists because IntelliJ has no public API for an in-strip spanning colour
+          label tabs that way — reproducing that would mean custom-painting an internal,
+          unstable part of the tab strip. The tool window is the deliberate substitute: everything
+          a group needs to be managed lives in one place instead.
+        </p>
+        <p>The list updates live — a group created from the swatch popup on another tab shows up here immediately, no need to reopen the panel.</p>
+      </section>
+
+      <section class="docs-section" id="collapse">
+        <h2>Collapsing &amp; expanding <span class="tier-tag tier-tag--pro">Pro</span></h2>
+        <p>
+          PrismTabs has no way to visually shrink a group into a chip — the
+          platform doesn't expose one. Instead, <strong>collapse means "close and remember"</strong>:
+        </p>
+        <ul>
+          <li><strong>Collapse</strong> closes every open tab belonging to the group and records exactly which files were open, in order.</li>
+          <li><strong>Expand</strong> reopens each of those files, in the same order, without changing focus away from what you're already looking at.</li>
+        </ul>
+        <p>Use it to get a crowded group out of the way without losing track of what was open in it — the group stays listed in the tool window (marked "collapsed") the whole time.</p>
+      </section>
+
+      <section class="docs-section" id="palette">
+        <h2>Customising the palette <span class="tier-tag tier-tag--pro">Pro to edit</span></h2>
+        <p>
+          PrismTabs ships 8 presets, each with a light-theme and dark-theme colour chosen to stay
+          legible against IntelliJ's own tab painter — including on unselected tabs, which the
+          platform renders at roughly half tint strength. The 8 presets are free to use as they
+          ship; renaming or repainting them is a Pro feature (see below).
+        </p>
+        <table class="docs-table">
+          <thead><tr><th>Preset</th><th>Light</th><th>Dark</th></tr></thead>
+          <tbody>
+            <tr><td>Grey</td><td>#DADCE0</td><td>#5F6368</td></tr>
+            <tr><td>Blue</td><td>#AECBFA</td><td>#2E5C9C</td></tr>
+            <tr><td>Red</td><td>#F6AEA9</td><td>#9C3333</td></tr>
+            <tr><td>Yellow</td><td>#FDE293</td><td>#8A6D1D</td></tr>
+            <tr><td>Green</td><td>#A8DAB5</td><td>#2D6A4F</td></tr>
+            <tr><td>Pink</td><td>#F7A8D2</td><td>#9C3372</td></tr>
+            <tr><td>Purple</td><td>#D3B3F5</td><td>#5C3C9C</td></tr>
+            <tr><td>Cyan</td><td>#99E3F5</td><td>#1D6E7A</td></tr>
+          </tbody>
+        </table>
+        <p>
+          To change a preset's name or colours, open
+          <span class="kbd-path">Settings → Tools → PrismTabs</span>. Each row has an editable
+          name field and a colour picker for the light and dark variant. Changes apply immediately
+          to every group using that preset; a <strong>Restore Defaults</strong> link resets
+          everything back to the built-in palette in one step.
+        </p>
+        <p>This is an IDE-level preference, not a per-project setting — it follows you the same way an editor colour scheme would, across every project you open.</p>
+      </section>
+
+      <section class="docs-section" id="persistence">
+        <h2>Persistence &amp; renames</h2>
+        <p>
+          Group assignments and collapsed state are stored per-project and survive an IDE restart.
+          They also follow a file through a rename or a move, including files nested inside a
+          renamed or moved directory — you won't lose a tab's colour just because you reorganised
+          your project.
+        </p>
+      </section>
+
+      <section class="docs-section" id="compatibility">
+        <h2>Compatibility</h2>
+        <p>
+          PrismTabs depends only on <code class="mono">com.intellij.modules.platform</code>, so it
+          isn't tied to one product — it runs in IntelliJ IDEA, WebStorm, PyCharm, GoLand,
+          PhpStorm, Rider, RubyMine, CLion, DataGrip, Android Studio, and any other IDE built on
+          the same platform, from <strong>2024.2</strong> onward. It's tested against both the
+          classic and Islands tab painters, and against light, dark, and high-contrast themes.
+        </p>
+      </section>
+
+      <section class="docs-section" id="faq">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+          <h3>Why does an unselected tab look more faded than the selected one?</h3>
+          <p>IntelliJ's own tab painter blends unselected tab colours to roughly half strength against the background — that's a platform behaviour, not something PrismTabs can override. The palette's dark presets are deliberately saturated enough to stay clearly visible even after that blend.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Does a colour follow the tab or the file?</h3>
+          <p>The file. If the same file is open in two split editors, both tabs show the same colour — the platform's colour API is keyed on the file, not on an individual tab instance.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I get a bar that spans several grouped tabs?</h3>
+          <p>Not currently — IntelliJ has no public API for it, and building one would mean custom-painting an internal, unstable part of the platform. The Tab Groups tool window is the supported way to see and manage a group as a unit.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can tab text colour change along with the background?</h3>
+          <p>No. The relevant platform API for tab foreground colour is experimental and tied to file status, not to PrismTabs' groups, so only the tab background is themeable.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens to a group's files when I delete the group?</h3>
+          <p>Only the assignment is removed — every member tab loses its colour and its group membership, but the files themselves are completely unaffected. Deleting a group always asks for confirmation first.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is there a one-time, perpetual licence option?</h3>
+          <p>No — PrismTabs Pro is a $10/year subscription only. See <a href="#licensing">Licensing &amp; the free trial</a> for what stays free without one.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens when the 30-day trial ends?</h3>
+          <p>Without an active subscription, PrismTabs drops to the Free tier: the Tab Groups tool window, collapse/expand, active-group auto-join, and palette editing become unavailable until you subscribe. Nothing is deleted, and the core tab-colouring workflow keeps working.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens if my Pro subscription lapses after a year?</h3>
+          <p>The same downgrade as an expired trial — back to the Free tier, not a frozen or crippled state. Renewing brings the Pro features straight back with your existing groups and assignments intact.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <svg class="brand-mark" width="20" height="20" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="13" cy="15" r="6.5" fill="#AECBFA"/>
+          <circle cx="27" cy="15" r="6.5" fill="#F6AEA9"/>
+          <circle cx="20" cy="27" r="6.5" fill="#A8DAB5"/>
+        </svg>
+        © 2026 PrismTabs
+      </div>
+      <nav class="footer-links">
+        <a href="docs.html">Docs</a>
+        <a href="mailto:yendrrek@protonmail.com">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    var navToggle = document.getElementById('navToggle');
+    if (navToggle) {
+      navToggle.addEventListener('click', function () {
+        var expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        document.body.classList.toggle('nav-open', !expanded);
+      });
+    }
+
+    var themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      var setThemeLabel = function (theme) {
+        var next = theme === 'light' ? 'dark' : 'light';
+        themeToggle.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      };
+      setThemeLabel(document.documentElement.getAttribute('data-theme'));
+      themeToggle.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        var next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('prismtabs-theme', next);
+        setThemeLabel(next);
+      });
+    }
+  </script>
+</body>
+</html>
