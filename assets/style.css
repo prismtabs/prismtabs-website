@@ -962,7 +962,7 @@ footer {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 48px;
-  padding: 48px 0 96px;
+  padding: 48px 24px 96px;
   align-items: start;
 }
 
@@ -1011,8 +1011,24 @@ footer {
   margin: 0 0 48px;
 }
 
+.docs-content > .lead.legal-lead {
+  margin-bottom: 24px;
+}
+
+.legal-meta {
+  color: var(--text-dim);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+}
+
+.callout.legal-accept {
+  margin: 0 0 48px;
+}
+
 .docs-section {
   margin-bottom: 52px;
+  padding: 0;
   scroll-margin-top: 90px;
 }
 
@@ -1020,13 +1036,11 @@ footer {
   font-size: 1.4rem;
   letter-spacing: -0.015em;
   margin: 0 0 6px;
-  padding-top: 4px;
-  border-top: 1px solid var(--border);
   padding-top: 24px;
+  border-top: 1px solid var(--border);
 }
 
-.docs-section h2:first-child,
-.docs-section:first-child h2 {
+.docs-section:first-of-type h2 {
   border-top: none;
   padding-top: 0;
 }

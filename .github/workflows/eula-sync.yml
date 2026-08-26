@@ -1,0 +1,71 @@
+# Verify that the published Agreement still matches its source of truth.
+#
+# The source lives in a different, private repository, so this needs a
+# credential with read access to it: a read-only deploy key, which never
+# expires. See "Keeping the EULA in sync" in the README.
+#
+# The plugin repository runs the mirror image of this job when docs/EULA.md
+# changes, so drift is caught from whichever side it starts. The schedule here
+# is the backstop for anything that slips past both.
+name: EULA sync
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - eula.html
+      - tools/**
+      - .github/workflows/eula-sync.yml
+  pull_request:
+    paths:
+      - eula.html
+      - tools/**
+      - .github/workflows/eula-sync.yml
+  schedule:
+    - cron: '17 6 * * 1'  # Mondays, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eula-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Compare eula.html with EULA.md
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the website
+        uses: actions/checkout@v4
+
+      # Fail with something actionable rather than letting the checkout below
+      # die on an opaque authentication error. A missing key must never be
+      # allowed to pass quietly: an unverified legal document is the whole
+      # thing this job exists to prevent.
+      - name: Verify the deploy key is configured
+        env:
+          DEPLOY_KEY: ${{ secrets.PRISMTABS_DEPLOY_KEY }}
+        run: |
+          if [ -z "$DEPLOY_KEY" ]; then
+            echo "::error::PRISMTABS_DEPLOY_KEY is not set, so the EULA source cannot be read." \
+                 "Add a read-only deploy key to yendrrek/prismtabs and store its private half" \
+                 "in this repository as a secret named PRISMTABS_DEPLOY_KEY." \
+                 "See the README for details."
+            exit 1
+          fi
+
+      # Only one file is needed, so don't clone the whole plugin repository.
+      - name: Check out the EULA source
+        uses: actions/checkout@v4
+        with:
+          repository: yendrrek/prismtabs
+          ssh-key: ${{ secrets.PRISMTABS_DEPLOY_KEY }}
+          path: plugin
+          sparse-checkout: docs/EULA.md
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - name: Compare the published Agreement with its source
+        run: python3 tools/check-eula-sync.py --source plugin/docs/EULA.md

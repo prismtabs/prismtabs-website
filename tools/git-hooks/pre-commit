@@ -1,0 +1,36 @@
+#!/bin/sh
+# Refuse to commit an eula.html that no longer matches the EULA.md source of
+# truth in the plugin repository.
+#
+# Install with:
+#     git config core.hooksPath tools/git-hooks
+
+repo_root=$(git rev-parse --show-toplevel) || exit 1
+checker="$repo_root/tools/check-eula-sync.py"
+
+[ -x "$checker" ] || exit 0
+
+# The page itself is staged, so it must be verifiable here and now: a missing
+# EULA.md is an error rather than something to shrug off.
+if git diff --cached --name-only | grep -qx 'eula.html'; then
+    exec "$checker"
+fi
+
+# Otherwise this is an unrelated commit. Verify when we can, but don't block
+# work on a machine that has no checkout of the plugin repository.
+"$checker" >/dev/null 2>&1
+status=$?
+
+case "$status" in
+    0)
+        exit 0
+        ;;
+    2)
+        echo "warning: skipping the EULA sync check (no EULA.md source available)" >&2
+        exit 0
+        ;;
+    *)
+        "$checker"   # re-run so the diff reaches the terminal
+        exit 1
+        ;;
+esac
