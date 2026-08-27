@@ -158,10 +158,10 @@
           and Delete Group for the selected group.
         </p>
         <p>
-          This panel exists because IntelliJ has no public API for an in-strip spanning colour
-          label tabs that way — reproducing that would mean custom-painting an internal,
-          unstable part of the tab strip. The tool window is the deliberate substitute: everything
-          a group needs to be managed lives in one place instead.
+          The tool window is where group management lives by design: rather than layering custom
+          chrome onto the editor tab strip, PrismTabs keeps everything a group needs — colour,
+          membership, hidden state, and actions — in one dedicated place, built on the supported
+          platform API.
         </p>
         <p>The list updates live — a group created from the swatch popup on another tab shows up here immediately, no need to reopen the panel.</p>
       </section>
@@ -169,8 +169,8 @@
       <section class="docs-section" id="hiding">
         <h2>Hiding &amp; showing <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
-          PrismTabs has no way to visually shrink a group into a chip — the
-          platform doesn't expose one. Instead, <strong>hiding means "close and remember"</strong>:
+          PrismTabs doesn't collapse a group into an in-strip chip; instead,
+          <strong>hiding means "close and remember"</strong>:
         </p>
         <ul>
           <li><strong>Hide Group</strong> closes every open tab belonging to the group and records exactly which files were open, in order.</li>
@@ -183,8 +183,8 @@
         <h2>Customising the palette <span class="tier-tag tier-tag--pro">Pro to edit</span></h2>
         <p>
           PrismTabs ships 8 presets, each with a light-theme and dark-theme colour chosen to stay
-          legible against IntelliJ's own tab painter — including on unselected tabs, which the
-          platform renders at roughly half tint strength. The 8 presets are free to use as they
+          legible on IntelliJ editor tabs — including unselected tabs, which the IDE draws at
+          roughly half tint strength. The 8 presets are free to use as they
           ship; renaming or repainting them is a Pro feature (see below).
         </p>
         <table class="docs-table">
@@ -236,7 +236,7 @@
 
         <div class="faq-item">
           <h3>Why does an unselected tab look more faded than the selected one?</h3>
-          <p>IntelliJ's own tab painter blends unselected tab colours to roughly half strength against the background — that's a platform behaviour, not something PrismTabs can override. The palette's dark presets are deliberately saturated enough to stay clearly visible even after that blend.</p>
+          <p>IntelliJ draws unselected editor tabs at roughly half tint strength against the background, so a group colour reads more softly there than on the active tab. The palette's dark presets are deliberately saturated enough to stay clearly visible even after that blend.</p>
         </div>
 
         <div class="faq-item">
@@ -246,7 +246,7 @@
 
         <div class="faq-item">
           <h3>Can I get a bar that spans several grouped tabs?</h3>
-          <p>Not currently — IntelliJ has no public API for it, and building one would mean custom-painting an internal, unstable part of the platform. The PrismTabs tool window is the supported way to see and manage a group as a unit.</p>
+          <p>Not currently. PrismTabs stays on the supported platform API and colours tabs individually rather than custom-painting the tab strip; the PrismTabs tool window is the way to see and manage a group as a unit.</p>
         </div>
 
         <div class="faq-item">
@@ -298,6 +298,13 @@
         <a href="https://github.com/yendrrek/prismtabs-feedback">Feedback</a>
         <a href="mailto:yendrrek@protonmail.com">Contact</a>
       </nav>
+    </div>
+    <div class="wrap">
+      <p class="footer-legal">
+        JetBrains&reg;, IntelliJ&reg;, IntelliJ IDEA&reg; and the JetBrains logo are registered
+        trademarks of <a href="https://www.jetbrains.com/">JetBrains s.r.o.</a> PrismTabs is an
+        independent plugin and is not affiliated with, endorsed by, or sponsored by JetBrains.
+      </p>
     </div>
   </footer>
 
