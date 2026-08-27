@@ -158,10 +158,9 @@
           and Delete Group for the selected group.
         </p>
         <p>
-          The tool window is where group management lives by design: rather than layering custom
-          chrome onto the editor tab strip, PrismTabs keeps everything a group needs — colour,
-          membership, hidden state, and actions — in one dedicated place, built on the supported
-          platform API.
+          The tool window is where group management lives by design: it keeps everything a group
+          needs — colour, membership, hidden state, and actions — in one dedicated place, so the
+          editor tab strip stays as it is and just carries the group colours.
         </p>
         <p>The list updates live — a group created from the swatch popup on another tab shows up here immediately, no need to reopen the panel.</p>
       </section>
@@ -245,8 +244,8 @@
         </div>
 
         <div class="faq-item">
-          <h3>Can I get a bar that spans several grouped tabs?</h3>
-          <p>Not currently. PrismTabs stays on the supported platform API and colours tabs individually rather than custom-painting the tab strip; the PrismTabs tool window is the way to see and manage a group as a unit.</p>
+          <h3>Is there a collapsible group bar in the tab strip, like browser tab groups?</h3>
+          <p>No — IntelliJ provides no way to draw a widget that spans or collapses a run of editor tabs. PrismTabs shows a group in two places instead: the group's colour on each of its member tabs, and the PrismTabs tool window, which lists the group as a unit — name, colour, member count, and hidden state — with rename, recolour, delete, and hide/show. Hiding a group from the tool window closes its tabs and reopens them on demand, which covers most of what collapsing a browser group is for.</p>
         </div>
 
         <div class="faq-item">
