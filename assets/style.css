@@ -161,7 +161,7 @@ svg {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 56px;
   font-size: 14.5px;
 }
 
