@@ -475,7 +475,7 @@ svg {
 }
 
 .group-row.collapsed .group-meta::after {
-  content: " · collapsed";
+  content: " · hidden";
 }
 
 /* ---------- Sections ---------- */
