@@ -47,6 +47,9 @@ The hook blocks a commit that stages a drifted `eula.html`. On a machine with no
 plugin repository it warns and stands aside — unless `eula.html` is itself being committed, which
 it always refuses to wave through unverified.
 
+Per-machine setup for the local hook (macOS / Windows): see `docs/eula-sync-setup.md` in the
+[plugin repository](https://github.com/yendrrek/prismtabs).
+
 ### In CI
 
 Two workflows run the same check, one in each repository, because drift can start on either side
