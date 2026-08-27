@@ -176,24 +176,6 @@ svg {
   color: var(--text);
 }
 
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: var(--text);
-  color: var(--on-bright) !important;
-  font-weight: 600;
-  font-size: 14px;
-  text-decoration: none;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.nav-cta:hover {
-  opacity: 0.88;
-}
-
 .nav-toggle {
   display: none;
 }
@@ -1198,8 +1180,7 @@ table.docs-table th:first-child {
     transition: transform 0.2s ease;
   }
 
-  .nav-links a,
-  .nav-links .nav-cta {
+  .nav-links a {
     width: 100%;
     padding: 12px 8px;
   }
