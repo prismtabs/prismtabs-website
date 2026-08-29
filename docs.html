@@ -108,18 +108,19 @@
         <h2>Assigning a tab to a group</h2>
         <p>Right-click any editor tab. The first item in the context menu is <strong>Tab Group…</strong>, which opens the colour swatch popup:</p>
         <ul>
-          <li><strong>Click a preset dot</strong> — assigns the tab to a shared, colour-named group (e.g. "Blue"), creating it on first use. This is the fast path: repeated clicks across files on the same colour converge on one group instead of spawning duplicates.</li>
-          <li><strong>Add to Group…</strong> — lists your existing named groups; pick one to add the tab to it.</li>
-          <li><strong>New Group…</strong> — pick a colour, then name the group. Cancelling the name prompt aborts the whole flow — no group is created.</li>
-          <li><strong>Remove from Group</strong> — only shown when the tab is currently assigned; clears the assignment and the tint.</li>
+          <li><strong>Click a preset dot</strong> — the 8 dots sit under a <strong>New Group</strong> heading, and clicking one starts a new group: you pick the colour here, then name it. The name field is pre-filled with the colour's own label (e.g. "Blue"), so taking the default is a single keystroke. Cancelling the name prompt aborts the whole flow — no group is created and nothing is assigned. Every click makes a fresh group, so clicking the same colour on two different tabs gives you two separate groups; to add a tab to a group you already have, use <strong>Add to Group…</strong>.</li>
+          <li><strong>Add to Group…</strong> — lists your existing groups, each with its colour dot; pick one to add the tab to it. If moving the tab empties the group it was in, PrismTabs offers to delete that now-empty group.</li>
+          <li><strong>Manage Groups…</strong> — shown once at least one group exists; opens the rename, recolour, active-group, and delete actions covered in <a href="#groups">Working with groups</a>.</li>
+          <li><strong>Remove from Group</strong> — only shown when the tab is currently assigned; clears the assignment and the tint. If that was the group's last member, PrismTabs offers to delete the empty group.</li>
         </ul>
       </section>
 
       <section class="docs-section" id="groups">
         <h2>Working with groups</h2>
         <p>
-          Open <strong>Tab Group…</strong> on any tab already in a group, then choose
-          <strong>Manage Groups…</strong> to pick a group and act on it:
+          Open <strong>Tab Group…</strong> on any editor tab, then choose
+          <strong>Manage Groups…</strong> — it appears as soon as you have at least one
+          group — to pick a group and act on it:
         </p>
         <ul>
           <li><strong>Rename…</strong> — change the group's display name.</li>
@@ -127,7 +128,7 @@
           <li><strong>Mark as Active Group</strong> / <strong>Clear Active Group</strong> — see <a href="#active-group">Active groups</a>.</li>
           <li><strong>Delete Group</strong> — asks for confirmation first, then clears the assignment from every member tab (the files themselves are untouched).</li>
         </ul>
-        <p>You can also manage groups directly from the <a href="#tool-window">PrismTabs tool window</a>, which offers the same actions without needing an already-grouped tab to start from.</p>
+        <p>Rename, recolour and delete are also available from the <a href="#tool-window">PrismTabs tool window</a>, without going through a tab's context menu — along with <a href="#hiding">hide/show</a>, which only the tool window offers. Marking a group active is the one action that lives only in the popup.</p>
       </section>
 
       <section class="docs-section" id="active-group">
@@ -153,7 +154,8 @@
           find it under <span class="kbd-path">View → Tool Windows → PrismTabs</span>). It lists
           every group with its colour dot, name, member count, and whether it's hidden. A
           toolbar and matching right-click context menu offer Hide/Show Group, Rename…, Recolour…,
-          and Delete Group for the selected group.
+          and Delete Group for the selected group. Double-clicking a row is a shortcut for
+          Hide/Show.
         </p>
         <p>
           The tool window is where group management lives by design: it keeps everything a group
@@ -174,6 +176,11 @@
           <li><strong>Show Group</strong> reopens each of those files, in the same order, without changing focus away from what you're already looking at.</li>
         </ul>
         <p>Use it to get a crowded group out of the way without losing track of what was open in it — the group stays listed in the tool window (marked "hidden") the whole time.</p>
+        <div class="callout">
+          <strong>A hidden group is never held hostage.</strong> If your trial or subscription ends
+          while a group is hidden, the tool window still offers a one-click "reopen the tabs of your
+          hidden groups" — outside the paywall, precisely because hiding is what closed them.
+        </div>
       </section>
 
       <section class="docs-section" id="palette">
@@ -200,9 +207,11 @@
         <p>
           To change a preset's name or colours, open
           <span class="kbd-path">Settings → Tools → PrismTabs</span>. Each row has an editable
-          name field and a colour picker for the light and dark variant. Changes apply immediately
-          to every group using that preset; a <strong>Restore Defaults</strong> link resets
-          everything back to the built-in palette in one step.
+          name field and a colour picker for the light and dark variant. The edited palette is what
+          the <strong>New Group</strong> swatch row and <strong>Recolour…</strong> offer from then
+          on; groups you already have keep their own colours until you recolour them. A
+          <strong>Restore Defaults</strong> link resets everything back to the built-in palette in
+          one step.
         </p>
         <p>This is an IDE-level preference, not a per-project setting — it follows you the same way an editor colour scheme would, across every project you open.</p>
       </section>
@@ -215,6 +224,11 @@
           renamed or moved directory — you won't lose a tab's colour just because you reorganised
           your project.
         </p>
+        <p>
+          Deleting a file (or a directory of them) drops the matching assignments rather than
+          leaving a group pointing at something that no longer exists. If that empties a group,
+          PrismTabs offers to delete it — the group itself is never removed without asking.
+        </p>
       </section>
 
       <section class="docs-section" id="compatibility">
@@ -224,7 +238,7 @@
           isn't tied to one product — it runs in IntelliJ IDEA, WebStorm, PyCharm, GoLand,
           PhpStorm, Rider, RubyMine, CLion, DataGrip, Android Studio, and any other IDE built on
           the same platform, from <strong>2024.2</strong> onward. It's tested against both the
-          classic and Islands tab painters, and against light, dark, and high-contrast themes.
+          classic and the Islands tab painters, in light and dark themes alike.
         </p>
       </section>
 
