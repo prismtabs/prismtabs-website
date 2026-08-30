@@ -267,7 +267,7 @@
 
         <div class="faq-item">
           <h3>Can tab text colour change along with the background?</h3>
-          <p>No. The relevant platform API for tab foreground colour is experimental and tied to file status, not to PrismTabs' groups, so only the tab background is themeable.</p>
+          <p>No. IntelliJ has a proper per-file API for the tab background, which is what PrismTabs colours. It has nothing equivalent for the tab text: the only hook that touches tab foreground colour is experimental and, more to the point, driven by file status &mdash; VCS state and the like &mdash; with no way for a plugin to feed it a group's colour. So even setting the experimental part aside, tab text can't be made to follow a group.</p>
         </div>
 
         <div class="faq-item">
