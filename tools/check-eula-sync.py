@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-"""Verify that eula.html still says exactly what docs/EULA.md says.
+"""Verify that docs/EULA.md still says exactly what eula.html says.
 
-The EULA is a legal document that lives in two places: the markdown source of
-truth in the plugin repository, and the page published at prismtabs.com/eula.
-A silent drift between the two is worse than having only one of them, so this
-check compares the prose word for word and fails loudly when they diverge.
+The EULA is a legal document with one canonical form: eula.html in this
+repository, published at prismtabs.com/eula. The plugin repository keeps a
+mirror at docs/EULA.md so the licence text travels with the code. A silent
+drift between the two is worse than having only one of them, so this check
+compares the prose word for word and fails loudly when they diverge.
 
 Only the prose is compared. Formatting is irrelevant, and page furniture that
 was never part of the Agreement (the navigation, the table of contents, and
-anything marked `data-site-only`) is excluded.
+anything marked `data-site-only`) is excluded, as are HTML comments in the
+mirror.
 
 Usage:
-    tools/check-eula-sync.py [--source PATH] [--page PATH]
+    tools/check-eula-sync.py [--mirror PATH] [--page PATH]
 
-The source defaults to ../prismtabs/docs/EULA.md, or to $PRISMTABS_EULA when
+The mirror defaults to ../prismtabs/docs/EULA.md, or to $PRISMTABS_EULA when
 that is set.
 """
 
@@ -28,7 +30,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_SOURCE = REPO_ROOT.parent / "prismtabs" / "docs" / "EULA.md"
+DEFAULT_MIRROR = REPO_ROOT.parent / "prismtabs" / "docs" / "EULA.md"
 DEFAULT_PAGE = REPO_ROOT / "eula.html"
 
 # Elements whose text is page furniture rather than part of the Agreement.
@@ -91,6 +93,7 @@ class AgreementTextExtractor(HTMLParser):
 def markdown_text(source: str) -> str:
     """Strip the markdown formatting, leaving the prose."""
     text = source
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)      # HTML comments
     text = re.sub(r"^#{1,6}\s+", "", text, flags=re.MULTILINE)   # headings
     text = re.sub(r"^\s*[-*+]\s+", "", text, flags=re.MULTILINE)  # list bullets
     text = re.sub(r"\*\*(.+?)\*\*", r"\1", text, flags=re.DOTALL)  # bold
@@ -122,33 +125,33 @@ def sentences(text: str) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Check that eula.html matches the EULA.md source of truth."
+        description="Check that docs/EULA.md matches the canonical eula.html."
     )
     parser.add_argument(
-        "--source",
+        "--mirror",
         type=Path,
-        default=Path(os.environ.get("PRISMTABS_EULA", DEFAULT_SOURCE)),
-        help="path to EULA.md (default: %(default)s)",
+        default=Path(os.environ.get("PRISMTABS_EULA", DEFAULT_MIRROR)),
+        help="path to the docs/EULA.md mirror (default: %(default)s)",
     )
     parser.add_argument(
         "--page",
         type=Path,
         default=DEFAULT_PAGE,
-        help="path to eula.html (default: %(default)s)",
+        help="path to the canonical eula.html (default: %(default)s)",
     )
     args = parser.parse_args()
 
-    if not args.source.is_file():
+    if not args.mirror.is_file():
         print(
-            f"error: EULA source not found at {args.source}\n"
-            "       Pass --source, or set PRISMTABS_EULA, to point at the\n"
+            f"error: EULA mirror not found at {args.mirror}\n"
+            "       Pass --mirror, or set PRISMTABS_EULA, to point at the\n"
             "       docs/EULA.md in your checkout of the plugin repository.",
             file=sys.stderr,
         )
         return 2
 
     if not args.page.is_file():
-        print(f"error: page not found at {args.page}", file=sys.stderr)
+        print(f"error: canonical page not found at {args.page}", file=sys.stderr)
         return 2
 
     extractor = AgreementTextExtractor()
@@ -160,22 +163,22 @@ def main() -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
-    source_text = markdown_text(args.source.read_text(encoding="utf-8"))
+    mirror_text = markdown_text(args.mirror.read_text(encoding="utf-8"))
 
-    if words(source_text) == words(page_text):
-        print(f"EULA in sync: {args.page.name} matches {args.source}")
+    if words(page_text) == words(mirror_text):
+        print(f"EULA in sync: {args.mirror.name} matches {args.page}")
         return 0
 
     print(
-        f"error: {args.page.name} has drifted from {args.source}.\n"
-        "       The published Agreement must say exactly what the source says.\n",
+        f"error: {args.mirror.name} has drifted from {args.page.name}.\n"
+        "       The mirror must say exactly what the canonical Agreement says.\n",
         file=sys.stderr,
     )
     diff = difflib.unified_diff(
-        sentences(source_text),
         sentences(page_text),
-        fromfile=str(args.source),
-        tofile=str(args.page),
+        sentences(mirror_text),
+        fromfile=str(args.page),
+        tofile=str(args.mirror),
         lineterm="",
         n=1,
     )

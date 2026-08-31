@@ -1,6 +1,10 @@
 #!/bin/sh
-# Refuse to commit an eula.html that no longer matches the EULA.md source of
-# truth in the plugin repository.
+# The canonical End-User Licence Agreement is eula.html in this repository,
+# published at prismtabs.com/eula. docs/EULA.md in the plugin repository is a
+# mirror that must carry the same prose. This hook compares the two and prints
+# a reminder when they disagree — it never blocks, because the mirror lives in
+# a separate repository and cannot be updated in the same commit. CI is the
+# enforcing net.
 #
 # Install with:
 #     git config core.hooksPath tools/git-hooks
@@ -10,14 +14,11 @@ checker="$repo_root/tools/check-eula-sync.py"
 
 [ -x "$checker" ] || exit 0
 
-# The page itself is staged, so it must be verifiable here and now: a missing
-# EULA.md is an error rather than something to shrug off.
+page_staged=no
 if git diff --cached --name-only | grep -qx 'eula.html'; then
-    exec "$checker"
+    page_staged=yes
 fi
 
-# Otherwise this is an unrelated commit. Verify when we can, but don't block
-# work on a machine that has no checkout of the plugin repository.
 "$checker" >/dev/null 2>&1
 status=$?
 
@@ -26,11 +27,25 @@ case "$status" in
         exit 0
         ;;
     2)
-        echo "warning: skipping the EULA sync check (no EULA.md source available)" >&2
+        # No mirror checkout to compare against. Only worth a word if this
+        # commit actually changes the Agreement.
+        if [ "$page_staged" = yes ]; then
+            echo "note: eula.html changed but docs/EULA.md in the plugin repository could" >&2
+            echo "      not be checked (no checkout found). Update the mirror there too." >&2
+        fi
         exit 0
         ;;
     *)
-        "$checker"   # re-run so the diff reaches the terminal
-        exit 1
+        "$checker"   # re-run so the sentence-level diff reaches the terminal
+        echo >&2
+        if [ "$page_staged" = yes ]; then
+            echo "note: you have edited the canonical Agreement. Update docs/EULA.md in the" >&2
+            echo "      plugin repository to match — this commit is not blocked, but the" >&2
+            echo "      EULA sync workflow will fail until the mirror catches up." >&2
+        else
+            echo "warning: eula.html and its docs/EULA.md mirror disagree. Neither is staged" >&2
+            echo "         here, but the drift should be resolved — CI is failing on it." >&2
+        fi
+        exit 0
         ;;
 esac

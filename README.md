@@ -5,7 +5,7 @@ plugin. Static HTML/CSS, no build step, no external dependencies.
 
 - `index.html` — landing page
 - `docs.html` — the manual
-- `eula.html` — the End-User Licence Agreement, served at `/eula`
+- `eula.html` — the canonical End-User Licence Agreement, served at `/eula`
 - `assets/` — shared stylesheet and favicon
 - `tools/` — the EULA sync check and its git hook
 
@@ -24,18 +24,21 @@ just serve the files as-is.
 
 ## Keeping the EULA in sync
 
-`docs/EULA.md` in the [plugin repository](https://github.com/yendrrek/prismtabs) is the source of
-truth for the licence; `eula.html` publishes it. A legal document that silently drifts between the
-two is worse than one that only lives in one place, so the prose is checked rather than trusted:
+`eula.html` in this repository, published at `prismtabs.com/eula`, is the canonical End-User
+Licence Agreement. The [plugin repository](https://github.com/yendrrek/prismtabs) keeps a mirror
+at `docs/EULA.md` so the licence text travels with the code. Edit `eula.html` first, then update
+that mirror to match. A legal document that silently drifts between the two is worse than one that
+only lives in one place, so the prose is checked rather than trusted:
 
 ```bash
 tools/check-eula-sync.py
 ```
 
 It compares the two word for word, ignoring formatting, and prints a diff of the offending
-sentences when they diverge. The source defaults to `../prismtabs/docs/EULA.md` — override it with
-`--source` or by setting `PRISMTABS_EULA`. Page furniture that was never part of the Agreement is
-excluded: the nav, the table of contents, and any element marked `data-site-only`.
+sentences when they diverge. The mirror defaults to `../prismtabs/docs/EULA.md` — override it with
+`--mirror` or by setting `PRISMTABS_EULA`. Page furniture that was never part of the Agreement is
+excluded: the nav, the table of contents, any element marked `data-site-only`, and HTML comments
+in the mirror.
 
 To have it run automatically before every commit:
 
@@ -43,9 +46,9 @@ To have it run automatically before every commit:
 git config core.hooksPath tools/git-hooks
 ```
 
-The hook blocks a commit that stages a drifted `eula.html`. On a machine with no checkout of the
-plugin repository it warns and stands aside — unless `eula.html` is itself being committed, which
-it always refuses to wave through unverified.
+The hook is advisory: because the mirror lives in a separate repository and cannot be updated in
+the same commit, it prints a reminder when `eula.html` and `docs/EULA.md` disagree but never
+blocks. CI is the enforcing net.
 
 Per-machine setup for the local hook (macOS / Windows): see `docs/eula-sync-setup.md` in the
 [plugin repository](https://github.com/yendrrek/prismtabs).
@@ -57,11 +60,10 @@ and an edit on one side produces no commit — and so no build — on the other:
 
 | Workflow | Fires when | Catches |
 | --- | --- | --- |
-| `.github/workflows/eula-sync.yml` here | `eula.html` or `tools/` changes; weekly; on demand | A page edit that got past the hook (or `--no-verify`) |
-| `.github/workflows/eula-sync.yml` in the plugin repository | `docs/EULA.md` changes; on demand | Amending the licence and forgetting the published page |
+| `.github/workflows/eula-sync.yml` here | `eula.html` or `tools/` changes; weekly; on demand | A canonical edit landed without the mirror being brought up to match |
+| `.github/workflows/eula-sync.yml` in the plugin repository | `docs/EULA.md` changes; on demand | The mirror edited directly and left out of step with the canonical page |
 
-The second is the one that matters most, and the weekly schedule here is the backstop for anything
-that slips past both.
+The weekly schedule here is the backstop for anything that slips past both.
 
 Each workflow reads one file from the other, private, repository. That needs a credential, and the
 credential is a **read-only deploy key** rather than a personal access token: a deploy key never

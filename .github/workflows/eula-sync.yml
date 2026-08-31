@@ -1,6 +1,7 @@
-# Verify that the published Agreement still matches its source of truth.
+# Verify that the docs/EULA.md mirror in the plugin repository still matches the
+# canonical Agreement, eula.html, published from this repository.
 #
-# The source lives in a different, private repository, so this needs a
+# The mirror lives in a different, private repository, so this needs a
 # credential with read access to it: a read-only deploy key, which never
 # expires. See "Keeping the EULA in sync" in the README.
 #
@@ -34,7 +35,7 @@ concurrency:
 
 jobs:
   check:
-    name: Compare eula.html with EULA.md
+    name: Compare docs/EULA.md with the canonical page
     runs-on: ubuntu-latest
     steps:
       - name: Check out the website
@@ -49,7 +50,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.PRISMTABS_DEPLOY_KEY }}
         run: |
           if [ -z "$DEPLOY_KEY" ]; then
-            echo "::error::PRISMTABS_DEPLOY_KEY is not set, so the EULA source cannot be read." \
+            echo "::error::PRISMTABS_DEPLOY_KEY is not set, so the EULA mirror cannot be read." \
                  "Add a read-only deploy key to yendrrek/prismtabs and store its private half" \
                  "in this repository as a secret named PRISMTABS_DEPLOY_KEY." \
                  "See the README for details."
@@ -57,7 +58,7 @@ jobs:
           fi
 
       # Only one file is needed, so don't clone the whole plugin repository.
-      - name: Check out the EULA source
+      - name: Check out the EULA mirror
         uses: actions/checkout@v4
         with:
           repository: yendrrek/prismtabs
@@ -67,5 +68,5 @@ jobs:
           sparse-checkout-cone-mode: false
           persist-credentials: false
 
-      - name: Compare the published Agreement with its source
-        run: python3 tools/check-eula-sync.py --source plugin/docs/EULA.md
+      - name: Compare the mirror with the canonical Agreement
+        run: python3 tools/check-eula-sync.py --mirror plugin/docs/EULA.md
