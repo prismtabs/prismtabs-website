@@ -128,7 +128,7 @@
           <li><strong>Mark as Active Group</strong> / <strong>Clear Active Group</strong> — see <a href="#active-group">Active groups</a>.</li>
           <li><strong>Delete Group</strong> — asks for confirmation first, then clears the assignment from every member tab (the files themselves are untouched).</li>
         </ul>
-        <p>Rename, recolour and delete are also available from the <a href="#tool-window">PrismTabs tool window</a>, without going through a tab's context menu — along with <a href="#hiding">hide/show</a>, which only the tool window offers. Marking a group active is the one action that lives only in the popup.</p>
+        <p>Rename, recolour, delete and marking a group active are also available from the <a href="#tool-window">PrismTabs tool window</a>, without going through a tab's context menu — along with <a href="#hiding">hide/show</a>, which only the tool window offers.</p>
       </section>
 
       <section class="docs-section" id="active-group">
@@ -136,7 +136,9 @@
         <p>
           Mark one group <strong>active</strong> and every file you open afterwards joins it
           automatically — no assigning each tab by hand. The active group is labelled
-          <em>(active)</em> wherever it appears in the popup.
+          <em>(active)</em> wherever it appears in the popup, and carries a matching
+          <em>· active</em> marker in the <a href="#tool-window">tool window</a>. You can mark a
+          group active from either place.
         </p>
         <div class="callout">
           <strong>The active group doesn't survive a restart, by design.</strong> An assignment is
@@ -151,10 +153,14 @@
         <p>
           Open the <strong>PrismTabs</strong> stripe on the right-hand edge of the IDE window (or
           find it under <span class="kbd-path">View → Tool Windows → PrismTabs</span>). It lists
-          every group with its colour dot, name, member count, and whether it's hidden. A
-          toolbar and matching right-click context menu offer Hide/Show Group, Rename…, Recolour…,
-          and Delete Group for the selected group. Double-clicking a row is a shortcut for
-          Hide/Show.
+          every group with its colour dot, name, member count, and whether it's hidden or active —
+          the active group carries a <em>· active</em> marker, echoing the popup's
+          <em>(active)</em> label. A
+          toolbar and matching right-click context menu offer Active Group, Hide/Show Group,
+          Rename…, Recolour…, and Delete Group for the selected group.
+          <strong>Active Group</strong> is a toggle — it stays checked while that group is the
+          active one — and marking a group active here or from a tab's popup keeps both views in
+          step. Double-clicking a row is a shortcut for Hide/Show.
         </p>
         <p>
           The tool window is where group management lives by design: it keeps everything a group
