@@ -109,7 +109,7 @@
         <p>Right-click any editor tab. The first item in the context menu is <strong>Tab Group…</strong>, which opens the colour swatch popup:</p>
         <ul>
           <li><strong>Click a preset dot</strong> — the 8 dots sit under a <strong>New Group</strong> heading, and clicking one starts a new group: you pick the colour here, then name it. The name field is pre-filled with the colour's own label (e.g. "Blue"), so taking the default is a single keystroke. Cancelling the name prompt aborts the whole flow — no group is created and nothing is assigned. Every click makes a fresh group, so clicking the same colour on two different tabs gives you two separate groups; to add a tab to a group you already have, use <strong>Add to Group…</strong>.</li>
-          <li><strong>Add to Tab Group "&lt;name&gt;"</strong> — appears right under the swatches, with the group's own colour dot, only when a group is <a href="#active-group">marked active</a> and this tab isn't assigned to one yet. One click puts the tab straight in the active group — see <a href="#active-group">Active groups</a> for why this row exists.</li>
+          <li><strong>Add to Group "&lt;name&gt;"</strong> — appears right under the swatches, with the group's own colour dot, only when a group is <a href="#active-group">marked active</a> and this tab isn't assigned to one yet. One click puts the tab straight in that group, without going through the list below — see <a href="#active-group">Active groups</a> for why this row exists.</li>
           <li><strong>Add to Group…</strong> — lists your existing groups, each with its colour dot; pick one to add the tab to it. If moving the tab empties the group it was in, PrismTabs offers to delete that now-empty group.</li>
           <li><strong>Manage Groups…</strong> — shown once at least one group exists; opens the rename, recolour, active-group, and delete actions covered in <a href="#groups">Working with groups</a>.</li>
           <li><strong>Remove from Group</strong> — only shown when the tab is currently assigned; clears the assignment and the tint. If that was the group's last member, PrismTabs offers to delete the empty group.</li>
@@ -151,14 +151,11 @@
           Auto-join only ever sees a file being <em>opened</em> — so a file that's already open
           when you mark a group active, or one you switch back to by clicking its tab, doesn't join
           on its own. That's a platform limit, not a bug: IntelliJ raises no event for opening a
-          file that's already open, so there's nothing for PrismTabs to react to. Two one-click
-          routes cover it instead, and neither needs a subscription — assigning a tab by hand stays
-          free, same as every other manual assignment:
+          file that's already open, so there's nothing for PrismTabs to react to. Right-click that
+          tab and the popup carries an <strong>Add to Group "&lt;name&gt;"</strong> row naming the
+          active group — one click, no need to close and reopen the file, and no subscription
+          needed either: assigning a tab by hand stays free, same as every other manual assignment.
         </p>
-        <ul>
-          <li>The tab popup's <strong>Add to Tab Group "&lt;name&gt;"</strong> row (see <a href="#assigning">Assigning a tab</a>).</li>
-          <li>Right-click the file in the <strong>Project</strong> tool window and pick the same <strong>Add to Tab Group "&lt;name&gt;"</strong> item — handy since that's exactly the tree a double-click on an already-open file happens in. It's also bindable to a keyboard shortcut under <span class="kbd-path">Settings → Keymap</span>, listed as "Add to Active Tab Group" (no shortcut is set by default).</li>
-        </ul>
       </section>
 
       <section class="docs-section" id="tool-window">
