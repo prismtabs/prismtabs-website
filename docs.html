@@ -50,6 +50,7 @@
         <a href="#licensing">Licensing &amp; the free trial</a>
         <a href="#assigning">Assigning a tab</a>
         <a href="#groups">Working with groups</a>
+        <a href="#membership">What's in a group</a>
         <a href="#active-group">Active groups</a>
         <a href="#tool-window">PrismTabs tool window</a>
         <a href="#hiding">Hiding &amp; showing</a>
@@ -92,7 +93,7 @@
         </ul>
         <p>The split between the two tiers is feature-based, never a cap on how many groups you can make:</p>
         <ul>
-          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour), persistence across restarts, and assignments that follow a file through a rename or move.</li>
+          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour), <a href="#membership">listing a group's files</a> whether or not their tabs are open, persistence across restarts, and assignments that follow a file through a rename or move.</li>
           <li><strong>Pro</strong> — the <a href="#tool-window">PrismTabs tool window</a>, <a href="#hiding">hide/show</a>, <a href="#active-group">active-group auto-join</a>, and <a href="#palette">palette editing</a>.</li>
         </ul>
         <div class="callout">
@@ -124,12 +125,30 @@
           group — to pick a group and act on it:
         </p>
         <ul>
+          <li><strong>Files…</strong> — lists every file in the group, open tab or not; see <a href="#membership">What's in a group</a>.</li>
           <li><strong>Rename…</strong> — change the group's display name.</li>
           <li><strong>Recolour…</strong> — pick a new preset colour; every member tab repaints immediately.</li>
           <li><strong>Mark as Active Group</strong> / <strong>Clear Active Group</strong> — see <a href="#active-group">Active groups</a>.</li>
           <li><strong>Delete Group</strong> — asks for confirmation first, then clears the assignment from every member tab (the files themselves are untouched).</li>
         </ul>
         <p>Rename, recolour, delete and marking a group active are also available from the <a href="#tool-window">PrismTabs tool window</a>, without going through a tab's context menu — along with <a href="#hiding">hide/show</a>, which only the tool window offers.</p>
+      </section>
+
+      <section class="docs-section" id="membership">
+        <h2>What's in a group</h2>
+        <p>
+          A group's members are <em>files</em>, not tabs — closing a tab doesn't take the file out
+          of its group. Two places list them, so a member whose tab is shut is never lost:
+        </p>
+        <ul>
+          <li><strong>Files… <span class="tier-tag tier-tag--free">Free</span></strong> — in the swatch popup, <strong>Manage Groups…</strong> → the group → <strong>Files…</strong>. A titled chooser lists every member by name with its greyed project-relative directory, sorted by path, with type-to-filter search. Click one to open it — if its tab is already open, it's brought to the front.</li>
+          <li><strong>The tool window tree <span class="tier-tag tier-tag--pro">Pro</span></strong> — expand a group row to the same list, always on screen; see <a href="#tool-window">the tool window</a>.</li>
+        </ul>
+        <p>
+          If a file has been deleted outside the IDE, its row is listed as <strong>missing</strong>
+          rather than quietly dropped, and choosing it offers to remove it from the group. Files
+          deleted <em>inside</em> the IDE are unassigned automatically.
+        </p>
       </section>
 
       <section class="docs-section" id="active-group">
@@ -162,15 +181,32 @@
         <h2>The PrismTabs tool window <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           Open the <strong>PrismTabs</strong> stripe on the right-hand edge of the IDE window (or
-          find it under <span class="kbd-path">View → Tool Windows → PrismTabs</span>). It lists
-          every group with its colour dot, name, member count, and whether it's hidden or active —
+          find it under <span class="kbd-path">View → Tool Windows → PrismTabs</span>). It's a
+          tree: every group is a row carrying its colour dot, name, member count (<em>3 files</em>,
+          counting members whether or not their tabs are open) and whether it's hidden or active —
           the active group carries a <em>· active</em> marker, echoing the popup's
           <em>(active)</em> label. A
           toolbar and matching right-click context menu offer Active Group, Hide/Show Group,
           Rename…, Recolour…, and Delete Group for the selected group.
           <strong>Active Group</strong> is a toggle — it stays checked while that group is the
           active one — and marking a group active here or from a tab's popup keeps both views in
-          step. Double-clicking a row is a shortcut for Hide/Show.
+          step. Double-clicking a group row is a shortcut for Hide/Show.
+        </p>
+        <p>
+          <strong>Expand a group</strong> and it lists the files it holds, one row each: file-type
+          icon, file name, and the project-relative directory in grey. Members whose tab is
+          currently open are shown in bold, so the closed ones stand out — those are the ones you
+          couldn't otherwise get at. Double-click a file row (or press Enter) to open it, and the
+          usual platform navigation works on the selected row, including
+          <span class="kbd-path">F4</span> and Select in Project View. Typing searches the tree,
+          collapsed groups included.
+        </p>
+        <p>
+          Right-click a file row for <strong>Remove from Group</strong> — which is what the tree
+          makes possible: a member whose tab is closed can be dropped without opening it first,
+          something a tab's own right-click menu can't offer. Ctrl-click gathers several files,
+          adjacent or not, and one click unassigns them all. If that empties a group, PrismTabs
+          offers to delete it, once for the whole batch.
         </p>
         <p>
           The tool window is where group management lives by design: it keeps everything a group
@@ -190,7 +226,7 @@
           <li><strong>Hide Group</strong> closes every open tab belonging to the group and records exactly which files were open, in order.</li>
           <li><strong>Show Group</strong> reopens each of those files, in the same order, in the background — your current tab stays active.</li>
         </ul>
-        <p>Use it to get a crowded group out of the way without losing track of what was open in it — the group stays listed in the tool window (marked "hidden") the whole time.</p>
+        <p>Use it to get a crowded group out of the way without losing track of what was open in it — the group stays listed in the tool window (marked "hidden") the whole time, and expanding it still shows every file it holds. A group reads as hidden whenever it has members and none of their tabs is open, however they were closed; an empty group is neither hidden nor shown, so the toggle is greyed out on one.</p>
         <div class="callout">
           <strong>A hidden group is never held hostage.</strong> If your trial or subscription ends
           while a group is hidden, the tool window still opens — it shows a locked panel in place of
@@ -240,10 +276,13 @@
       <section class="docs-section" id="persistence">
         <h2>Persistence &amp; renames</h2>
         <p>
-          Group assignments and hidden state are stored per-project and survive an IDE restart.
-          They also follow a file through a rename or a move, including files nested inside a
-          renamed or moved directory — you won't lose a tab's colour just because you reorganised
-          your project.
+          Group assignments are stored per-project and survive an IDE restart. They also follow a
+          file through a rename or a move, including files nested inside a renamed or moved
+          directory — you won't lose a tab's colour just because you reorganised your project. The
+          set of tabs a hidden group remembers is stored too, so <strong>Show Group</strong> still
+          reopens the right files after a restart. (Whether a group reads as <em>hidden</em> isn't
+          stored — it simply means the group has members and none of them is open, so the label can
+          never disagree with the tab strip.)
         </p>
         <p>
           Deleting a file (or a directory of them) drops the matching assignments rather than
@@ -278,7 +317,7 @@
 
         <div class="faq-item">
           <h3>Is there a collapsible group bar in the tab strip, like browser tab groups?</h3>
-          <p>No — IntelliJ provides no way to draw a widget that spans or collapses a run of editor tabs. PrismTabs shows a group in two places instead: the group's colour on each of its member tabs, and the PrismTabs tool window, which lists the group as a unit — name, colour, member count, and hidden state — with rename, recolour, delete, and hide/show. Hiding a group from the tool window closes its tabs and reopens them on demand, which covers most of what collapsing a browser group is for.</p>
+          <p>No — IntelliJ provides no way to draw a widget that spans or collapses a run of editor tabs. PrismTabs shows a group in two places instead: the group's colour on each of its member tabs, and the PrismTabs tool window, which lists the group as a unit — name, colour, member count, and hidden state — expands it to the files it holds, and carries rename, recolour, delete, and hide/show. Hiding a group from the tool window closes its tabs and reopens them on demand, which covers most of what collapsing a browser group is for.</p>
         </div>
 
         <div class="faq-item">
