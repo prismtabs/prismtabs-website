@@ -51,7 +51,7 @@ jobs:
         run: |
           if [ -z "$DEPLOY_KEY" ]; then
             echo "::error::PRISMTABS_DEPLOY_KEY is not set, so the EULA mirror cannot be read." \
-                 "Add a read-only deploy key to yendrrek/prismtabs and store its private half" \
+                 "Add a read-only deploy key to prismtabs/prismtabs and store its private half" \
                  "in this repository as a secret named PRISMTABS_DEPLOY_KEY." \
                  "See the README for details."
             exit 1
@@ -61,7 +61,7 @@ jobs:
       - name: Check out the EULA mirror
         uses: actions/checkout@v4
         with:
-          repository: yendrrek/prismtabs
+          repository: prismtabs/prismtabs
           ssh-key: ${{ secrets.PRISMTABS_DEPLOY_KEY }}
           path: plugin
           sparse-checkout: docs/EULA.md

@@ -1,6 +1,6 @@
 # PrismTabs website
 
-Marketing site and manual for [PrismTabs](https://github.com/yendrrek/prismtabs), a JetBrains
+Marketing site and manual for [PrismTabs](https://github.com/prismtabs/prismtabs), a JetBrains
 plugin. Static HTML/CSS, no build step, no external dependencies.
 
 - `index.html` — landing page
@@ -25,7 +25,7 @@ just serve the files as-is.
 ## Keeping the EULA in sync
 
 `eula.html` in this repository, published at `prismtabs.com/eula`, is the canonical End-User
-Licence Agreement. The [plugin repository](https://github.com/yendrrek/prismtabs) keeps a mirror
+Licence Agreement. The [plugin repository](https://github.com/prismtabs/prismtabs) keeps a mirror
 at `docs/EULA.md` so the licence text travels with the code. Edit `eula.html` first, then update
 that mirror to match. A legal document that silently drifts between the two is worse than one that
 only lives in one place, so the prose is checked rather than trusted:
@@ -51,7 +51,7 @@ the same commit, it prints a reminder when `eula.html` and `docs/EULA.md` disagr
 blocks. CI is the enforcing net.
 
 Per-machine setup for the local hook (macOS / Windows): see `docs/eula-sync-setup.md` in the
-[plugin repository](https://github.com/yendrrek/prismtabs).
+[plugin repository](https://github.com/prismtabs/prismtabs).
 
 ### In CI
 
@@ -72,15 +72,15 @@ anything else in the account. Two keys are needed, one per direction:
 
 | Deploy key on | Private half stored in | As secret |
 | --- | --- | --- |
-| `yendrrek/prismtabs` | `yendrrek/prismtabs-website` | `PRISMTABS_DEPLOY_KEY` |
-| `yendrrek/prismtabs-website` | `yendrrek/prismtabs` | `WEBSITE_DEPLOY_KEY` |
+| `prismtabs/prismtabs` | `prismtabs/prismtabs-website` | `PRISMTABS_DEPLOY_KEY` |
+| `prismtabs/prismtabs-website` | `prismtabs/prismtabs` | `WEBSITE_DEPLOY_KEY` |
 
 To create one of them (repeat with the two repositories swapped for the other direction):
 
 ```bash
 ssh-keygen -t ed25519 -N '' -C 'eula-sync' -f /tmp/eula-sync-key
-gh repo deploy-key add /tmp/eula-sync-key.pub --repo yendrrek/prismtabs --title 'eula-sync (read-only)'
-gh secret set PRISMTABS_DEPLOY_KEY --repo yendrrek/prismtabs-website < /tmp/eula-sync-key
+gh repo deploy-key add /tmp/eula-sync-key.pub --repo prismtabs/prismtabs --title 'eula-sync (read-only)'
+gh secret set PRISMTABS_DEPLOY_KEY --repo prismtabs/prismtabs-website < /tmp/eula-sync-key
 shred -u /tmp/eula-sync-key /tmp/eula-sync-key.pub
 ```
 
