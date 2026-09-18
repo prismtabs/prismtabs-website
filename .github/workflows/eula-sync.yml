@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the website
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Fail with something actionable rather than letting the checkout below
       # die on an opaque authentication error. A missing key must never be
@@ -59,7 +59,7 @@ jobs:
 
       # Only one file is needed, so don't clone the whole plugin repository.
       - name: Check out the EULA mirror
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: prismtabs/prismtabs
           ssh-key: ${{ secrets.PRISMTABS_DEPLOY_KEY }}
