@@ -413,6 +413,11 @@ section.tight {
   padding: 64px 0;
 }
 
+/* The closing CTA band follows directly, so the section's own bottom padding would double up. */
+#pricing {
+  padding-bottom: 32px;
+}
+
 .section-head {
   max-width: 640px;
   margin: 0 0 48px;
@@ -772,7 +777,7 @@ section.tight {
   margin: 0;
 }
 
-/* The shared CTA lives below the grid, so the feature list is the card's last child. */
+/* The feature list is the card's last child, so it needs no bottom margin of its own. */
 .pricing-grid .plan-features {
   margin-bottom: 0;
 }
@@ -801,16 +806,9 @@ section.tight {
   border-radius: 999px;
 }
 
-.pricing-action {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 32px;
-}
-
 .pricing-fineprint {
   max-width: 620px;
-  margin: 16px 0 0;
+  margin: 32px auto 0;
   text-align: center;
   font-size: 13.5px;
   color: var(--text-dim);
