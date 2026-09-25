@@ -65,6 +65,11 @@ and an edit on one side produces no commit — and so no build — on the other:
 
 The weekly schedule here is the backstop for anything that slips past both.
 
+The two repositories cannot be pushed atomically, so a push-triggered run may start before the
+other side's push lands. On a push, both workflows therefore wait five minutes after a first
+mismatch, fetch the other repository again, and check once more before reporting drift. Pull
+requests, the schedule, and manual runs fail on the first mismatch.
+
 Each workflow reads one file from the other, private, repository. That needs a credential, and the
 credential is a **read-only deploy key** rather than a personal access token: a deploy key never
 expires and is scoped to a single repository, so there is no annual re-issue and no access to
