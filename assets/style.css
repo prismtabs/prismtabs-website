@@ -287,7 +287,14 @@ svg {
   background: var(--bg-card);
   font-size: 13px;
   color: var(--text-muted);
+  text-decoration: none;
   margin-bottom: 24px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+a.eyebrow:hover {
+  border-color: var(--accent-green);
+  color: var(--text);
 }
 
 .eyebrow .dot {
