@@ -76,7 +76,7 @@
         </p>
         <p>PrismTabs needs no setup beyond installation. The moment it's enabled you can right-click any open editor tab to start colouring it.</p>
         <div class="callout">
-          <strong>Requirement:</strong> IntelliJ Platform 2024.2 or newer. See
+          <strong>Requirement:</strong> IntelliJ Platform 2025.1 or newer. See
           <a href="#compatibility">Compatibility</a> for which IDEs that covers.
         </div>
       </section>
@@ -87,13 +87,13 @@
           PrismTabs licensing runs in three stages:
         </p>
         <ul>
-          <li><strong>Day 0 — install.</strong> No card, and no licence key to enter.</li>
+          <li><strong>Day 0 — install and start the trial.</strong> No card, and no licence key to enter: click <strong>Evaluate for free</strong> in the IDE's registration dialog, which PrismTabs opens the first time you reach for a Pro feature.</li>
           <li><strong>Days 1–14 — everything unlocked.</strong> Everyone gets the complete Pro feature set, free, for the first 14 days. Nothing is held back during the trial.</li>
-          <li><strong>Day 15 onward — Free, or from $14/year.</strong> Subscribe to keep the Pro features ($14 a year or $1.46 a month for individuals, $29 a year or $3.02 a month per user for organisations), or carry on indefinitely with the Free tier below.</li>
+          <li><strong>Day 15 onward — Free, or from $14/year.</strong> Subscribe to keep the Pro features ($14 a year or $1.50 a month for individuals, $29 a year or $3.10 a month per user for organisations), or carry on indefinitely with the Free tier below.</li>
         </ul>
         <p>The split between the two tiers is feature-based, never a cap on how many groups you can make:</p>
         <ul>
-          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour), <a href="#membership">listing a group's files</a> whether or not their tabs are open, persistence across restarts, and assignments that follow a file through a rename or move.</li>
+          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour, delete), <a href="#membership">listing a group's files</a> whether or not their tabs are open, persistence across restarts, and assignments that follow a file through a rename or move.</li>
           <li><strong>Pro</strong> — the <a href="#tool-window">PrismTabs tool window</a>, <a href="#hiding">hide/show</a>, <a href="#active-group">active-group auto-join</a>, and <a href="#palette">palette editing</a>.</li>
         </ul>
         <div class="callout">
@@ -102,7 +102,7 @@
           and colours are untouched, and Pro features come straight back the moment you subscribe.
           Nothing is deleted and nothing stops working outright.
         </div>
-        <p>The subscription is billed yearly or monthly through the JetBrains Marketplace; paying yearly saves 20%. See <a href="index.html#pricing">Pricing</a> for the full breakdown.</p>
+        <p>The subscription is billed yearly or monthly through the JetBrains Marketplace; paying yearly saves about 22%. See <a href="index.html#pricing">Pricing</a> for the full breakdown.</p>
       </section>
 
       <section class="docs-section" id="assigning">
@@ -155,7 +155,8 @@
         <h2>Active groups <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           Mark one group <strong>active</strong> and every file you open afterwards joins it
-          automatically — no assigning each tab by hand. The active group is labelled
+          automatically — no assigning each tab by hand. A file that's already in a group stays
+          where it is. The active group is labelled
           <em>(active)</em> wherever it appears in the popup, and carries a matching
           <em>· active</em> marker in the <a href="#tool-window">tool window</a>. You can mark a
           group active from either place.
@@ -204,7 +205,7 @@
         <p>
           Right-click a file row for <strong>Remove from Group</strong> — which is what the tree
           makes possible: a member whose tab is closed can be dropped without opening it first,
-          something a tab's own right-click menu can't offer. Ctrl-click gathers several files,
+          something a tab's own right-click menu can't offer. Ctrl-click (⌘-click on macOS) gathers several files,
           adjacent or not, and one click unassigns them all. If that empties a group, PrismTabs
           offers to delete it, once for the whole batch.
         </p>
@@ -230,8 +231,8 @@
         <div class="callout">
           <strong>A hidden group is never held hostage.</strong> If your trial or subscription ends
           while a group is hidden, the tool window still opens — it shows a locked panel in place of
-          the group list — and that panel carries a one-click <em>"reopen the tabs of your hidden
-          groups"</em>. It sits outside the paywall precisely because hiding is what closed them: it
+          the group list — and that panel carries a one-click <em>Reopen the tabs of N hidden
+          groups</em> link. It sits outside the paywall precisely because hiding is what closed them: it
           reopens those tabs and nothing more, so hide/show itself stays Pro.
         </div>
       </section>
@@ -294,11 +295,17 @@
       <section class="docs-section" id="compatibility">
         <h2>Compatibility</h2>
         <p>
-          PrismTabs depends only on <code class="mono">com.intellij.modules.platform</code>, so it
-          isn't tied to one product — it runs in IntelliJ IDEA, WebStorm, PyCharm, GoLand,
-          PhpStorm, Rider, RubyMine, CLion, DataGrip, Android Studio, and any other IDE built on
-          the same platform, from <strong>2024.2</strong> onward. It's tested against both the
-          classic and the Islands tab painters, in light and dark themes alike.
+          PrismTabs is built on the IntelliJ Platform rather than on any one product, so it runs
+          in IntelliJ IDEA, WebStorm, PyCharm, GoLand, PhpStorm, Rider, RubyMine, CLion, DataGrip,
+          Android Studio, and any other IDE built on the same platform, from
+          <strong>2025.1</strong> onward. It's tested against both the classic and the Islands tab
+          painters, in light and dark themes alike.
+        </p>
+        <p>
+          PrismTabs needs the <strong>JetBrains Marketplace Licensing</strong> plugin, which checks
+          your trial or subscription. JetBrains IDEs include it already; in an IDE that doesn't,
+          such as Android Studio, the IDE installs it along with PrismTabs. Removing it disables
+          PrismTabs as well.
         </p>
       </section>
 
@@ -332,7 +339,7 @@
 
         <div class="faq-item">
           <h3>Is there a one-time, perpetual licence option?</h3>
-          <p>No — PrismTabs Pro is a subscription only, billed yearly or monthly: $14 a year or $1.46 a month for individuals, and $29 a year or $3.02 a month per user for organisations. See <a href="#licensing">Licensing &amp; the free trial</a> for what stays free without one.</p>
+          <p>No — PrismTabs Pro is a subscription only, billed yearly or monthly: $14 a year or $1.50 a month for individuals, and $29 a year or $3.10 a month per user for organisations. See <a href="#licensing">Licensing &amp; the free trial</a> for what stays free without one.</p>
         </div>
 
         <div class="faq-item">
