@@ -1,6 +1,8 @@
 /* PrismTabs marketing site — shared styles */
 
 :root {
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
   --bg: #0a0b0d;
   --bg-elevated: #111318;
   --bg-card: #15171c;
@@ -105,8 +107,7 @@ body {
 }
 
 .mono {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
-    monospace;
+  font-family: var(--font-mono);
 }
 
 a {
@@ -1073,7 +1074,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   background: var(--bg-card);
   border: 1px solid var(--border);
