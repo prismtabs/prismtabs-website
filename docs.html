@@ -39,33 +39,58 @@
     </div>
   </header>
 
-  <div class="wrap docs-shell">
+  <header class="manual-head">
+    <div class="wrap">
+      <h1>Manual</h1>
+      <p class="lead">Everything PrismTabs does, in the order you'll use it.</p>
+      <nav class="chapter-strip" aria-label="Chapters">
+        <a data-chapter="setup" href="#getting-started"><span class="chapter-dot" aria-hidden="true"></span>Setup</a>
+        <a data-chapter="groups" href="#assigning"><span class="chapter-dot" aria-hidden="true"></span>Groups</a>
+        <a data-chapter="tools" href="#tool-window"><span class="chapter-dot" aria-hidden="true"></span>Tool window &amp; palette</a>
+        <a data-chapter="reference" href="#persistence"><span class="chapter-dot" aria-hidden="true"></span>Reference</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap docs-shell manual">
     <aside class="docs-toc">
+      <button class="toc-toggle" id="tocToggle" type="button" aria-expanded="false" aria-controls="tocTree">
+        On this page
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 5.25 7 8.75l3.5-3.5"/></svg>
+      </button>
       <div class="toc-title">On this page</div>
-      <nav>
-        <a href="#getting-started">Getting started</a>
-        <a href="#licensing">Licensing &amp; the free trial</a>
-        <a href="#assigning">Assigning a tab</a>
-        <a href="#groups">Working with groups</a>
-        <a href="#membership">What's in a group</a>
-        <a href="#active-group">Active groups</a>
-        <a href="#tool-window">PrismTabs tool window</a>
-        <a href="#hiding">Hiding &amp; showing</a>
-        <a href="#palette">The palette</a>
-        <a href="#persistence">Persistence &amp; renames</a>
-        <a href="#compatibility">Compatibility</a>
-        <a href="#faq">FAQ</a>
+      <nav class="toc-tree" id="tocTree" aria-label="On this page">
+        <div class="toc-group" data-chapter="setup">
+          <div class="toc-chapter"><span class="chapter-dot" aria-hidden="true"></span>Setup</div>
+          <a href="#getting-started">Getting started</a>
+          <a href="#licensing">Licensing &amp; the free trial</a>
+        </div>
+        <div class="toc-group" data-chapter="groups">
+          <div class="toc-chapter"><span class="chapter-dot" aria-hidden="true"></span>Groups</div>
+          <a href="#assigning">Assigning a tab</a>
+          <a href="#groups">Working with groups</a>
+          <a href="#membership">What's in a group</a>
+          <a href="#active-group">Active groups</a>
+        </div>
+        <div class="toc-group" data-chapter="tools">
+          <div class="toc-chapter"><span class="chapter-dot" aria-hidden="true"></span>Tool window &amp; palette</div>
+          <a href="#tool-window">PrismTabs tool window</a>
+          <a href="#hiding">Hiding &amp; showing</a>
+          <a href="#palette">The palette</a>
+        </div>
+        <div class="toc-group" data-chapter="reference">
+          <div class="toc-chapter"><span class="chapter-dot" aria-hidden="true"></span>Reference</div>
+          <a href="#persistence">Persistence &amp; renames</a>
+          <a href="#compatibility">Compatibility</a>
+          <a href="#faq">FAQ</a>
+        </div>
       </nav>
     </aside>
 
-    <div class="docs-content">
-      <h1>Manual</h1>
-      <p class="lead">
-        Everything PrismTabs does, in the order you'll use it.
-      </p>
+    <main class="docs-content">
 
-      <section class="docs-section" id="getting-started">
-        <h2>Getting started</h2>
+      <section class="docs-section" id="getting-started" data-chapter="setup">
+        <h2><a class="section-tab" href="#getting-started"><span class="chapter-dot" aria-hidden="true"></span>Getting started</a></h2>
         <p>
           Install PrismTabs from the JetBrains Marketplace inside your IDE:
           <span class="kbd-path">Settings → Plugins → Marketplace</span>, search "PrismTabs",
@@ -78,21 +103,47 @@
         </div>
       </section>
 
-      <section class="docs-section" id="licensing">
-        <h2>Licensing &amp; the free trial</h2>
+      <section class="docs-section" id="licensing" data-chapter="setup">
+        <h2><a class="section-tab" href="#licensing"><span class="chapter-dot" aria-hidden="true"></span>Licensing &amp; the free trial</a></h2>
         <p>
           PrismTabs licensing runs in three stages:
         </p>
-        <ul>
-          <li><strong>Day 0 — install and start the trial.</strong> No card, and no licence key to enter: click <strong>Evaluate for free</strong> in the IDE's registration dialog, which PrismTabs opens the first time you reach for a Pro feature.</li>
-          <li><strong>Days 1–14 — everything unlocked.</strong> Everyone gets the complete Pro feature set, free, for the first 14 days. Nothing is held back during the trial.</li>
-          <li><strong>Day 15 onward — Free, or from $14/year.</strong> Subscribe to keep the Pro features ($14 a year or $1.40 a month for individuals, $29 a year or $2.90 a month per user for organisations), or carry on indefinitely with the Free tier below.</li>
-        </ul>
+        <ol class="stage-list">
+          <li class="stage">
+            <span class="stage-when">Day 0</span>
+            <p><strong>Install and start the trial.</strong> No card, and no licence key to enter: click <strong>Evaluate for free</strong> in the IDE's registration dialog, which PrismTabs opens the first time you reach for a Pro feature.</p>
+          </li>
+          <li class="stage stage--pro">
+            <span class="stage-when">Days 1–14</span>
+            <p><strong>Everything unlocked.</strong> Everyone gets the complete Pro feature set, free, for the first 14 days. Nothing is held back during the trial.</p>
+          </li>
+          <li class="stage">
+            <span class="stage-when">Day 15 onward</span>
+            <p><strong>Free, or from $14/year.</strong> Subscribe to keep the Pro features ($14 a year or $1.40 a month for individuals, $29 a year or $2.90 a month per user for organisations), or carry on indefinitely with the Free tier below.</p>
+          </li>
+        </ol>
         <p>The split between the two tiers is feature-based, never a cap on how many groups you can make:</p>
-        <ul>
-          <li><strong>Free</strong> — assigning tabs to the 8 preset colours, unlimited named groups (create, rename, recolour, delete), <a href="#membership">listing a group's files</a> whether or not their tabs are open, persistence across restarts, and assignments that follow a file through a rename or move.</li>
-          <li><strong>Pro</strong> — the <a href="#tool-window">PrismTabs tool window</a>, <a href="#hiding">hide/show</a>, <a href="#active-group">active-group auto-join</a>, and <a href="#palette">palette editing</a>.</li>
-        </ul>
+        <div class="tier-compare">
+          <div class="tier-col tier-col--free">
+            <h3><span class="tier-tag tier-tag--free">Free</span></h3>
+            <ul>
+              <li>Assigning tabs to the 8 preset colours</li>
+              <li>Unlimited named groups (create, rename, recolour, delete)</li>
+              <li><a href="#membership">Listing a group's files</a> whether or not their tabs are open</li>
+              <li>Persistence across restarts</li>
+              <li>Assignments that follow a file through a rename or move</li>
+            </ul>
+          </div>
+          <div class="tier-col tier-col--pro">
+            <h3><span class="tier-tag tier-tag--pro">Pro</span></h3>
+            <ul>
+              <li>The <a href="#tool-window">PrismTabs tool window</a></li>
+              <li><a href="#hiding">Hide/show</a></li>
+              <li><a href="#active-group">Active-group auto-join</a></li>
+              <li><a href="#palette">Palette editing</a></li>
+            </ul>
+          </div>
+        </div>
         <div class="callout">
           <strong>Never a hard lockout.</strong> When the trial ends or a subscription lapses,
           PrismTabs simply drops back to the Free tier — your existing group assignments, names,
@@ -102,45 +153,64 @@
         <p>The subscription is billed yearly or monthly through the JetBrains Marketplace; paying yearly is the same as getting two months free. See <a href="index.html#pricing">Pricing</a> for the full breakdown.</p>
       </section>
 
-      <section class="docs-section" id="assigning">
-        <h2>Assigning a tab to a group</h2>
+      <section class="docs-section" id="assigning" data-chapter="groups">
+        <h2><a class="section-tab" href="#assigning"><span class="chapter-dot" aria-hidden="true"></span>Assigning a tab to a group</a></h2>
         <p>Right-click any editor tab. The first item in the context menu is <strong>Tab Group…</strong>, which opens the colour swatch popup:</p>
-        <ul>
-          <li><strong>Click a preset dot</strong> — the 8 dots sit under a <strong>New Group</strong> heading, and clicking one starts a new group: you pick the colour here, then name it. The name field is pre-filled with the colour's own label (e.g. "Blue"), so taking the default is a single keystroke. Cancelling the name prompt aborts the whole flow — no group is created and nothing is assigned. Every click makes a fresh group, so clicking the same colour on two different tabs gives you two separate groups; to add a tab to a group you already have, use <strong>Add to Group…</strong>.</li>
-          <li><strong>Add to Group "&lt;name&gt;"</strong> — appears right under the swatches, with the group's own colour dot, only when a group is <a href="#active-group">marked active</a> and this tab isn't assigned to one yet. One click puts the tab straight in that group, without going through the list below — see <a href="#active-group">Active groups</a> for why this row exists.</li>
-          <li><strong>Add to Group…</strong> — lists your existing groups, each with its colour dot; pick one to add the tab to it. If moving the tab empties the group it was in, PrismTabs offers to delete that now-empty group.</li>
-          <li><strong>Manage Groups…</strong> — shown once at least one group exists; opens the rename, recolour, active-group, and delete actions covered in <a href="#groups">Working with groups</a>.</li>
-          <li><strong>Remove from Group</strong> — only shown when the tab is currently assigned; clears the assignment and the tint. If that was the group's last member, PrismTabs offers to delete the empty group.</li>
-        </ul>
+        <dl class="command-list">
+          <dt>
+            <span class="command">
+              <span class="swatch-row" aria-hidden="true">
+                <i style="--c: var(--preset-grey-l)"></i><i style="--c: var(--preset-blue-l)"></i><i style="--c: var(--preset-red-l)"></i><i style="--c: var(--preset-yellow-l)"></i><i style="--c: var(--preset-green-l)"></i><i style="--c: var(--preset-pink-l)"></i><i style="--c: var(--preset-purple-l)"></i><i style="--c: var(--preset-cyan-l)"></i>
+              </span>
+              Click a preset dot
+            </span>
+          </dt>
+          <dd>The 8 dots sit under a <strong>New Group</strong> heading, and clicking one starts a new group: you pick the colour here, then name it. The name field is pre-filled with the colour's own label (e.g. "Blue"), so taking the default is a single keystroke. Cancelling the name prompt aborts the whole flow — no group is created and nothing is assigned. Every click makes a fresh group, so clicking the same colour on two different tabs gives you two separate groups; to add a tab to a group you already have, use <strong>Add to Group…</strong>.</dd>
+          <dt><span class="command">Add to Group "&lt;name&gt;"</span></dt>
+          <dd>Appears right under the swatches, with the group's own colour dot, only when a group is <a href="#active-group">marked active</a> and this tab isn't assigned to one yet. One click puts the tab straight in that group, without going through the list below — see <a href="#active-group">Active groups</a> for why this row exists.</dd>
+          <dt><span class="command">Add to Group…</span></dt>
+          <dd>Lists your existing groups, each with its colour dot; pick one to add the tab to it. If moving the tab empties the group it was in, PrismTabs offers to delete that now-empty group.</dd>
+          <dt><span class="command">Manage Groups…</span></dt>
+          <dd>Shown once at least one group exists; opens the rename, recolour, active-group, and delete actions covered in <a href="#groups">Working with groups</a>.</dd>
+          <dt><span class="command">Remove from Group</span></dt>
+          <dd>Only shown when the tab is currently assigned; clears the assignment and the tint. If that was the group's last member, PrismTabs offers to delete the empty group.</dd>
+        </dl>
       </section>
 
-      <section class="docs-section" id="groups">
-        <h2>Working with groups</h2>
+      <section class="docs-section" id="groups" data-chapter="groups">
+        <h2><a class="section-tab" href="#groups"><span class="chapter-dot" aria-hidden="true"></span>Working with groups</a></h2>
         <p>
           Open <strong>Tab Group…</strong> on any editor tab, then choose
           <strong>Manage Groups…</strong> — it appears as soon as you have at least one
           group — to pick a group and act on it:
         </p>
-        <ul>
-          <li><strong>Files…</strong> — lists every file in the group, open tab or not; see <a href="#membership">What's in a group</a>.</li>
-          <li><strong>Rename…</strong> — change the group's display name.</li>
-          <li><strong>Recolour…</strong> — pick a new preset colour; every member tab repaints immediately.</li>
-          <li><strong>Mark as Active Group</strong> / <strong>Clear Active Group</strong> — see <a href="#active-group">Active groups</a>.</li>
-          <li><strong>Delete Group</strong> — asks for confirmation first, then clears the assignment from every member tab (the files themselves are untouched).</li>
-        </ul>
+        <dl class="command-list">
+          <dt><span class="command">Files…</span></dt>
+          <dd>Lists every file in the group, open tab or not; see <a href="#membership">What's in a group</a>.</dd>
+          <dt><span class="command">Rename…</span></dt>
+          <dd>Change the group's display name.</dd>
+          <dt><span class="command">Recolour…</span></dt>
+          <dd>Pick a new preset colour; every member tab repaints immediately.</dd>
+          <dt><span class="command">Mark as Active Group</span> <span class="command">Clear Active Group</span></dt>
+          <dd>See <a href="#active-group">Active groups</a>.</dd>
+          <dt><span class="command">Delete Group</span></dt>
+          <dd>Asks for confirmation first, then clears the assignment from every member tab (the files themselves are untouched).</dd>
+        </dl>
         <p>Rename, recolour, delete and marking a group active are also available from the <a href="#tool-window">PrismTabs tool window</a>, without going through a tab's context menu — along with <a href="#hiding">hide/show</a>, which only the tool window offers.</p>
       </section>
 
-      <section class="docs-section" id="membership">
-        <h2>What's in a group</h2>
+      <section class="docs-section" id="membership" data-chapter="groups">
+        <h2><a class="section-tab" href="#membership"><span class="chapter-dot" aria-hidden="true"></span>What's in a group</a></h2>
         <p>
           A group's members are <em>files</em>, not tabs — closing a tab doesn't take the file out
           of its group. Two places list them, so a member whose tab is shut is never lost:
         </p>
-        <ul>
-          <li><strong>Files… <span class="tier-tag tier-tag--free">Free</span></strong> — in the swatch popup, <strong>Manage Groups…</strong> → the group → <strong>Files…</strong>. A titled chooser lists every member by name with its greyed project-relative directory, sorted by path, with type-to-filter search. Click one to open it — if its tab is already open, it's brought to the front.</li>
-          <li><strong>The tool window tree <span class="tier-tag tier-tag--pro">Pro</span></strong> — expand a group row to the same list, always on screen; see <a href="#tool-window">the tool window</a>.</li>
-        </ul>
+        <dl class="command-list">
+          <dt><span class="command">Files…</span> <span class="tier-tag tier-tag--free">Free</span></dt>
+          <dd>In the swatch popup, <strong>Manage Groups…</strong> → the group → <strong>Files…</strong>. A titled chooser lists every member by name with its greyed project-relative directory, sorted by path, with type-to-filter search. Click one to open it — if its tab is already open, it's brought to the front.</dd>
+          <dt><span class="command">The tool window tree</span> <span class="tier-tag tier-tag--pro">Pro</span></dt>
+          <dd>Expand a group row to the same list, always on screen; see <a href="#tool-window">the tool window</a>.</dd>
+        </dl>
         <p>
           If a file has been deleted outside the IDE, its row is listed as <strong>missing</strong>
           rather than quietly dropped, and choosing it offers to remove it from the group. Files
@@ -148,8 +218,8 @@
         </p>
       </section>
 
-      <section class="docs-section" id="active-group">
-        <h2>Active groups <span class="tier-tag tier-tag--pro">Pro</span></h2>
+      <section class="docs-section" id="active-group" data-chapter="groups">
+        <h2><a class="section-tab" href="#active-group"><span class="chapter-dot" aria-hidden="true"></span>Active groups</a> <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           Mark one group <strong>active</strong> and every file you open afterwards joins it
           automatically — no assigning each tab by hand. A file that's already in a group stays
@@ -175,8 +245,8 @@
         </p>
       </section>
 
-      <section class="docs-section" id="tool-window">
-        <h2>The PrismTabs tool window <span class="tier-tag tier-tag--pro">Pro</span></h2>
+      <section class="docs-section" id="tool-window" data-chapter="tools">
+        <h2><a class="section-tab" href="#tool-window"><span class="chapter-dot" aria-hidden="true"></span>The PrismTabs tool window</a> <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           Open the <strong>PrismTabs</strong> stripe on the right-hand edge of the IDE window (or
           find it under <span class="kbd-path">View → Tool Windows → PrismTabs</span>). It's a
@@ -214,16 +284,18 @@
         <p>The list updates live — a group created from the swatch popup on another tab shows up here immediately, no need to reopen the panel.</p>
       </section>
 
-      <section class="docs-section" id="hiding">
-        <h2>Hiding &amp; showing <span class="tier-tag tier-tag--pro">Pro</span></h2>
+      <section class="docs-section" id="hiding" data-chapter="tools">
+        <h2><a class="section-tab" href="#hiding"><span class="chapter-dot" aria-hidden="true"></span>Hiding &amp; showing</a> <span class="tier-tag tier-tag--pro">Pro</span></h2>
         <p>
           PrismTabs doesn't collapse a group into an in-strip chip; instead,
           <strong>hiding means "close and remember"</strong>:
         </p>
-        <ul>
-          <li><strong>Hide Group</strong> closes every open tab belonging to the group and records exactly which files were open, in order.</li>
-          <li><strong>Show Group</strong> reopens each of those files, in the same order, in the background — your current tab stays active.</li>
-        </ul>
+        <dl class="command-list">
+          <dt><span class="command">Hide Group</span></dt>
+          <dd>Closes every open tab belonging to the group and records exactly which files were open, in order.</dd>
+          <dt><span class="command">Show Group</span></dt>
+          <dd>Reopens each of those files, in the same order, in the background — your current tab stays active.</dd>
+        </dl>
         <p>Use it to get a crowded group out of the way without losing track of what was open in it — the group stays listed in the tool window (marked "hidden") the whole time, and expanding it still shows every file it holds. A group reads as hidden whenever it has members and none of their tabs is open, however they were closed; an empty group is neither hidden nor shown, so the toggle is greyed out on one.</p>
         <div class="callout">
           <strong>A hidden group is never held hostage.</strong> If your trial or subscription ends
@@ -234,8 +306,8 @@
         </div>
       </section>
 
-      <section class="docs-section" id="palette">
-        <h2>The palette <span class="tier-tag tier-tag--pro">Pro to edit</span></h2>
+      <section class="docs-section" id="palette" data-chapter="tools">
+        <h2><a class="section-tab" href="#palette"><span class="chapter-dot" aria-hidden="true"></span>The palette</a> <span class="tier-tag tier-tag--pro">Pro to edit</span></h2>
         <p>
           PrismTabs ships 8 presets, each with a separate light-theme and dark-theme colour.
           IntelliJ applies a group colour as a tint over the tab rather than a solid fill, and on
@@ -245,17 +317,17 @@
           presets are free to use as they ship; renaming or repainting them is a Pro feature
           (see below).
         </p>
-        <table class="docs-table">
-          <thead><tr><th>Preset</th><th>Light</th><th>Dark</th></tr></thead>
+        <table class="docs-table palette-table">
+          <thead><tr><th scope="col">Preset</th><th scope="col">Light theme</th><th scope="col">Dark theme</th></tr></thead>
           <tbody>
-            <tr><td>Grey</td><td>#DADCE0</td><td>#5F6368</td></tr>
-            <tr><td>Blue</td><td>#AECBFA</td><td>#2E5C9C</td></tr>
-            <tr><td>Red</td><td>#F6AEA9</td><td>#9C3333</td></tr>
-            <tr><td>Yellow</td><td>#FDE293</td><td>#8A6D1D</td></tr>
-            <tr><td>Green</td><td>#A8DAB5</td><td>#2D6A4F</td></tr>
-            <tr><td>Pink</td><td>#F7A8D2</td><td>#9C3372</td></tr>
-            <tr><td>Purple</td><td>#D3B3F5</td><td>#5C3C9C</td></tr>
-            <tr><td>Cyan</td><td>#99E3F5</td><td>#1D6E7A</td></tr>
+            <tr><th scope="row">Grey</th><td><span class="swatch" style="--c: var(--preset-grey-l)"></span>#DADCE0</td><td><span class="swatch" style="--c: var(--preset-grey-d)"></span>#5F6368</td></tr>
+            <tr><th scope="row">Blue</th><td><span class="swatch" style="--c: var(--preset-blue-l)"></span>#AECBFA</td><td><span class="swatch" style="--c: var(--preset-blue-d)"></span>#2E5C9C</td></tr>
+            <tr><th scope="row">Red</th><td><span class="swatch" style="--c: var(--preset-red-l)"></span>#F6AEA9</td><td><span class="swatch" style="--c: var(--preset-red-d)"></span>#9C3333</td></tr>
+            <tr><th scope="row">Yellow</th><td><span class="swatch" style="--c: var(--preset-yellow-l)"></span>#FDE293</td><td><span class="swatch" style="--c: var(--preset-yellow-d)"></span>#8A6D1D</td></tr>
+            <tr><th scope="row">Green</th><td><span class="swatch" style="--c: var(--preset-green-l)"></span>#A8DAB5</td><td><span class="swatch" style="--c: var(--preset-green-d)"></span>#2D6A4F</td></tr>
+            <tr><th scope="row">Pink</th><td><span class="swatch" style="--c: var(--preset-pink-l)"></span>#F7A8D2</td><td><span class="swatch" style="--c: var(--preset-pink-d)"></span>#9C3372</td></tr>
+            <tr><th scope="row">Purple</th><td><span class="swatch" style="--c: var(--preset-purple-l)"></span>#D3B3F5</td><td><span class="swatch" style="--c: var(--preset-purple-d)"></span>#5C3C9C</td></tr>
+            <tr><th scope="row">Cyan</th><td><span class="swatch" style="--c: var(--preset-cyan-l)"></span>#99E3F5</td><td><span class="swatch" style="--c: var(--preset-cyan-d)"></span>#1D6E7A</td></tr>
           </tbody>
         </table>
         <p>
@@ -271,8 +343,8 @@
         <p>A palette you customised while subscribed keeps being offered if the subscription lapses — the settings page simply greys its fields out. The Free tier loses the ability to edit the palette, not the colours you already saved.</p>
       </section>
 
-      <section class="docs-section" id="persistence">
-        <h2>Persistence &amp; renames</h2>
+      <section class="docs-section" id="persistence" data-chapter="reference">
+        <h2><a class="section-tab" href="#persistence"><span class="chapter-dot" aria-hidden="true"></span>Persistence &amp; renames</a></h2>
         <p>
           Group assignments are stored per-project and survive an IDE restart. They also follow a
           file through a rename or a move, including files nested inside a renamed or moved
@@ -289,8 +361,8 @@
         </p>
       </section>
 
-      <section class="docs-section" id="compatibility">
-        <h2>Compatibility</h2>
+      <section class="docs-section" id="compatibility" data-chapter="reference">
+        <h2><a class="section-tab" href="#compatibility"><span class="chapter-dot" aria-hidden="true"></span>Compatibility</a></h2>
         <p>
           PrismTabs is built on the IntelliJ Platform rather than on any one product, so it runs
           in IntelliJ IDEA, WebStorm, PyCharm, GoLand, PhpStorm, Rider, RubyMine, CLion, DataGrip,
@@ -306,8 +378,8 @@
         </p>
       </section>
 
-      <section class="docs-section" id="faq">
-        <h2>FAQ</h2>
+      <section class="docs-section" id="faq" data-chapter="reference">
+        <h2><a class="section-tab" href="#faq"><span class="chapter-dot" aria-hidden="true"></span>FAQ</a></h2>
 
         <div class="faq-item">
           <h3>Why does an unselected tab look more faded than the selected one?</h3>
@@ -359,7 +431,7 @@
           <p>The <a href="https://github.com/prismtabs/prismtabs-feedback">PrismTabs feedback tracker</a> on GitHub, which covers both, for every edition &mdash; Free, Pro and the trial alike. Billing, invoices and licence activation are handled by JetBrains, since PrismTabs is sold through the JetBrains Marketplace &mdash; manage those from your <a href="https://account.jetbrains.com/">JetBrains Account</a>. For anything else that shouldn&rsquo;t be public, email <a href="mailto:contact@prismtabs.com">contact@prismtabs.com</a>.</p>
         </div>
       </section>
-    </div>
+    </main>
   </div>
 
   <footer>
@@ -388,6 +460,7 @@
     </div>
   </footer>
 
+  <script src="assets/toc.js"></script>
   <script>
     var navToggle = document.getElementById('navToggle');
     if (navToggle) {

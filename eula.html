@@ -40,10 +40,14 @@
     </div>
   </header>
 
-  <div class="wrap docs-shell">
+  <div class="wrap docs-shell manual legal">
     <aside class="docs-toc">
+      <button class="toc-toggle" id="tocToggle" type="button" aria-expanded="false" aria-controls="tocTree">
+        On this page
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 5.25 7 8.75l3.5-3.5"/></svg>
+      </button>
       <div class="toc-title">On this page</div>
-      <nav>
+      <nav class="toc-tree" id="tocTree" aria-label="On this page">
         <a href="#grant">1. Grant of Licence</a>
         <a href="#fees">1.5 Fees and Renewal</a>
         <a href="#restrictions">2. Restrictions</a>
@@ -77,7 +81,7 @@
       </div>
 
       <section class="docs-section" id="grant">
-        <h2>1. Grant of Licence</h2>
+        <h2><a class="section-tab" href="#grant"><span class="chapter-dot" aria-hidden="true"></span>1. Grant of Licence</a></h2>
 
         <h3>1.1 Free features</h3>
         <p>
@@ -129,7 +133,7 @@
       </section>
 
       <section class="docs-section" id="fees">
-        <h2>1.5 Fees and Renewal</h2>
+        <h2><a class="section-tab" href="#fees"><span class="chapter-dot" aria-hidden="true"></span>1.5 Fees and Renewal</a></h2>
         <p>
           Paid features are sold and billed through the JetBrains Marketplace, which acts as the
           seller of record. The price is the one shown on the Marketplace listing at the time you
@@ -152,7 +156,7 @@
       </section>
 
       <section class="docs-section" id="restrictions">
-        <h2>2. Restrictions</h2>
+        <h2><a class="section-tab" href="#restrictions"><span class="chapter-dot" aria-hidden="true"></span>2. Restrictions</a></h2>
         <p>You must not, and must not permit any third party to:</p>
         <ul>
           <li>copy, redistribute, sell, rent, lease, sublicense, or otherwise transfer the Software or any licence to it, except as expressly permitted by this Agreement;</li>
@@ -164,7 +168,7 @@
       </section>
 
       <section class="docs-section" id="ownership">
-        <h2>3. Ownership</h2>
+        <h2><a class="section-tab" href="#ownership"><span class="chapter-dot" aria-hidden="true"></span>3. Ownership</a></h2>
         <p>
           The Software is licensed, not sold. The Licensor and its licensors retain all right,
           title, and interest in and to the Software, including all intellectual property rights
@@ -174,7 +178,7 @@
       </section>
 
       <section class="docs-section" id="data">
-        <h2>4. Data and Privacy</h2>
+        <h2><a class="section-tab" href="#data"><span class="chapter-dot" aria-hidden="true"></span>4. Data and Privacy</a></h2>
         <p>
           The Software does not transmit your source code, file contents, or project data to the
           Licensor or any third party, and does not collect telemetry. Licence/subscription status
@@ -185,7 +189,7 @@
       </section>
 
       <section class="docs-section" id="updates">
-        <h2>5. Updates</h2>
+        <h2><a class="section-tab" href="#updates"><span class="chapter-dot" aria-hidden="true"></span>5. Updates</a></h2>
         <p>
           The Licensor may release updates to the Software from time to time. Updates may be
           installed automatically depending on your IDE settings. This Agreement applies to all
@@ -194,7 +198,7 @@
       </section>
 
       <section class="docs-section" id="warranty">
-        <h2>6. No Warranty</h2>
+        <h2><a class="section-tab" href="#warranty"><span class="chapter-dot" aria-hidden="true"></span>6. No Warranty</a></h2>
         <p>
           THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
           INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
@@ -206,7 +210,7 @@
       </section>
 
       <section class="docs-section" id="liability">
-        <h2>7. Limitation of Liability</h2>
+        <h2><a class="section-tab" href="#liability"><span class="chapter-dot" aria-hidden="true"></span>7. Limitation of Liability</a></h2>
         <p>
           TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE LICENSOR BE
           LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY
@@ -219,7 +223,7 @@
       </section>
 
       <section class="docs-section" id="termination">
-        <h2>8. Term and Termination</h2>
+        <h2><a class="section-tab" href="#termination"><span class="chapter-dot" aria-hidden="true"></span>8. Term and Termination</a></h2>
         <p>
           This Agreement is effective until terminated. Your rights under this Agreement terminate
           automatically, without notice, if you fail to comply with any of its terms. Upon
@@ -229,7 +233,7 @@
       </section>
 
       <section class="docs-section" id="governing-law">
-        <h2>9. Governing Law</h2>
+        <h2><a class="section-tab" href="#governing-law"><span class="chapter-dot" aria-hidden="true"></span>9. Governing Law</a></h2>
         <p>
           This Agreement, and any dispute or claim arising out of or in connection with it, is
           governed by and construed in accordance with the law of Scotland. The Scottish courts
@@ -240,7 +244,7 @@
       </section>
 
       <section class="docs-section" id="miscellaneous">
-        <h2>10. Miscellaneous</h2>
+        <h2><a class="section-tab" href="#miscellaneous"><span class="chapter-dot" aria-hidden="true"></span>10. Miscellaneous</a></h2>
         <p>
           This Agreement constitutes the entire agreement between you and the Licensor regarding the
           Software and supersedes any prior agreements regarding the Software. The Licensor may
@@ -252,7 +256,7 @@
       </section>
 
       <section class="docs-section" id="contact">
-        <h2>Contact</h2>
+        <h2><a class="section-tab" href="#contact"><span class="chapter-dot" aria-hidden="true"></span>Contact</a></h2>
         <p>
           Andrzej Piontek —
           <a href="mailto:contact@prismtabs.com">contact@prismtabs.com</a> —
@@ -298,6 +302,7 @@
     </div>
   </footer>
 
+  <script src="assets/toc.js"></script>
   <script>
     var navToggle = document.getElementById('navToggle');
     if (navToggle) {

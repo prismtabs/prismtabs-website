@@ -104,12 +104,12 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
@@ -1178,6 +1178,589 @@ table.docs-table th:first-child {
   margin: 0;
 }
 
+/* ---------- Manual ---------- */
+
+/*
+ * The manual is split into four chapters, each coloured with one of the plugin's
+ * own presets the way PrismTabs tints a group's tabs: the dark-theme preset as the
+ * tab fill on a dark page, the light-theme preset on a light one. --chapter-ink is
+ * the opposite variant, used for the dot and for accents drawn on the page itself.
+ */
+[data-chapter="setup"] {
+  --chapter-fill: var(--preset-blue-d);
+  --chapter-ink: var(--preset-blue-l);
+}
+
+[data-chapter="groups"] {
+  --chapter-fill: var(--preset-green-d);
+  --chapter-ink: var(--preset-green-l);
+}
+
+[data-chapter="tools"] {
+  --chapter-fill: var(--preset-purple-d);
+  --chapter-ink: var(--preset-purple-l);
+}
+
+[data-chapter="reference"] {
+  --chapter-fill: var(--preset-yellow-d);
+  --chapter-ink: var(--preset-yellow-l);
+}
+
+:root[data-theme="light"] [data-chapter="setup"] {
+  --chapter-fill: var(--preset-blue-l);
+  --chapter-ink: var(--preset-blue-d);
+}
+
+:root[data-theme="light"] [data-chapter="groups"] {
+  --chapter-fill: var(--preset-green-l);
+  --chapter-ink: var(--preset-green-d);
+}
+
+:root[data-theme="light"] [data-chapter="tools"] {
+  --chapter-fill: var(--preset-purple-l);
+  --chapter-ink: var(--preset-purple-d);
+}
+
+:root[data-theme="light"] [data-chapter="reference"] {
+  --chapter-fill: var(--preset-yellow-l);
+  --chapter-ink: var(--preset-yellow-d);
+}
+
+.chapter-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--chapter-ink);
+}
+
+/* Page head: the title and a strip of chapter tabs sitting on the page's baseline. */
+
+.manual-head {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.manual-head::before {
+  content: "";
+  position: absolute;
+  top: -260px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 480px;
+  background: radial-gradient(closest-side, var(--warm-glow), transparent 70%);
+  pointer-events: none;
+}
+
+.manual-head .wrap {
+  position: relative;
+}
+
+.manual-head h1 {
+  font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.manual-head .lead {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin: 0 0 40px;
+}
+
+.chapter-strip {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chapter-strip a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  padding: 8px 16px 8px 13px;
+  border-radius: 10px 10px 0 0;
+  background: color-mix(in srgb, var(--chapter-fill) 45%, transparent);
+  box-shadow: inset 0 -2px 0 var(--chapter-ink);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.chapter-strip a:hover {
+  background: color-mix(in srgb, var(--chapter-fill) 80%, transparent);
+}
+
+.chapter-strip a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+/* Layout: a readable measure for the prose column. */
+
+.manual.docs-shell {
+  padding-top: 56px;
+}
+
+.manual .docs-content {
+  min-width: 0;
+  max-width: 46rem;
+}
+
+.docs-toc {
+  max-height: calc(100vh - 116px);
+  overflow-y: auto;
+}
+
+/* Table of contents, drawn as the PrismTabs tool window's tree. */
+
+.toc-toggle {
+  display: none;
+}
+
+.toc-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.toc-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-chapter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.docs-toc .toc-group a {
+  margin-left: 4px;
+  padding: 6px 10px 6px 16px;
+  border-left: 2px solid color-mix(in srgb, var(--chapter-fill) 70%, transparent);
+  border-radius: 0 7px 7px 0;
+}
+
+.docs-toc .toc-group a:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--chapter-fill) 22%, transparent);
+}
+
+.docs-toc .toc-group a[aria-current="location"] {
+  color: var(--text);
+  font-weight: 500;
+  border-left-color: var(--chapter-ink);
+  background: color-mix(in srgb, var(--chapter-fill) 38%, transparent);
+}
+
+/* A tree without chapters, as on the licence page, takes the brand accent instead. */
+
+.toc-tree > a {
+  padding: 6px 10px 6px 14px;
+  border-left: 2px solid var(--border-strong);
+  border-radius: 0 7px 7px 0;
+}
+
+.toc-tree > a[aria-current="location"] {
+  color: var(--text);
+  font-weight: 500;
+  border-left-color: var(--headline-via);
+  background: var(--bg-card);
+}
+
+.docs-toc a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+/* Sections: each heading is a tinted tab, and a permalink to its section. */
+
+.manual .docs-section {
+  margin-bottom: 72px;
+  scroll-margin-top: 92px;
+}
+
+.manual .docs-section h2,
+.manual .docs-section:first-of-type h2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 0 24px;
+  padding: 0;
+  border-top: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--chapter-fill) 70%, transparent);
+  font-size: 1.05rem;
+}
+
+.section-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 12px;
+  border-radius: 10px 10px 0 0;
+  background: color-mix(in srgb, var(--chapter-fill) 45%, transparent);
+  box-shadow: inset 0 -2px 0 var(--chapter-ink);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.section-tab::after {
+  content: "#";
+  content: "#" / "";
+  margin-left: -4px;
+  color: var(--text-dim);
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.section-tab:hover::after,
+.section-tab:focus-visible::after {
+  opacity: 1;
+}
+
+.section-tab:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.manual .docs-section h2 .tier-tag {
+  margin-left: 0;
+}
+
+.manual .docs-section p,
+.manual .docs-section ul,
+.manual .docs-section ol,
+.manual .docs-section dd {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.manual .docs-section p a,
+.manual .docs-section li a,
+.manual .docs-section dd a,
+.manual .callout a {
+  color: var(--text);
+  text-decoration-color: var(--chapter-ink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.manual .docs-section p a:hover,
+.manual .docs-section li a:hover,
+.manual .docs-section dd a:hover,
+.manual .callout a:hover {
+  text-decoration-thickness: 2.5px;
+}
+
+.manual .callout {
+  border: none;
+  border-left: 3px solid var(--chapter-ink);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: color-mix(in srgb, var(--chapter-fill) 16%, var(--bg));
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 28px 0;
+}
+
+.manual .callout strong:first-child {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Licensing stages: a vertical timeline. */
+
+.stage-list {
+  list-style: none;
+  margin: 24px 0 32px;
+  padding: 0;
+}
+
+.manual .docs-section .stage-list {
+  padding-left: 0;
+}
+
+.stage {
+  position: relative;
+  padding: 0 0 24px 32px;
+  margin: 0;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+}
+
+.stage::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 2px;
+  left: 6px;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+.stage:last-child {
+  padding-bottom: 0;
+}
+
+.stage:last-child::after {
+  display: none;
+}
+
+.stage--pro::before {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 4px rgba(181, 140, 242, 0.18);
+}
+
+.stage-when {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--chapter-ink);
+  margin-bottom: 2px;
+}
+
+.manual .docs-section .stage p {
+  margin: 0;
+}
+
+/* Free and Pro, side by side. */
+
+.tier-compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 20px 0 8px;
+}
+
+.tier-col {
+  padding: 18px 20px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+}
+
+.tier-col--pro {
+  border-color: rgba(181, 140, 242, 0.35);
+}
+
+.manual .docs-section .tier-col h3 {
+  margin: 0 0 10px;
+}
+
+.tier-col .tier-tag {
+  margin-left: 0;
+  font-size: 11.5px;
+  padding: 3px 10px;
+}
+
+.manual .docs-section .tier-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+}
+
+.tier-col li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.tier-col li::before {
+  content: "";
+  position: absolute;
+  top: 0.68em;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+}
+
+.tier-col--pro li::before {
+  background: var(--accent-purple);
+}
+
+/* IDE commands and what each one does. */
+
+.command-list {
+  margin: 20px 0 28px;
+  border-top: 1px solid var(--border);
+}
+
+.command-list dt {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.command-list dd {
+  margin: 8px 0 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.command {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 11px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.command-list dt .tier-tag {
+  margin-left: 0;
+}
+
+.swatch-row {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.swatch-row i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+/* Palette table with real swatches. */
+
+.palette-table td {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+
+table.palette-table tbody th {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+
+.palette-table .swatch {
+  display: inline-block;
+  width: 28px;
+  height: 18px;
+  margin-right: 12px;
+  vertical-align: -4px;
+  border-radius: 5px;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+/* The licence page shares the manual's layout; its tabs and callout take the brand's pink. */
+
+.legal {
+  --chapter-fill: var(--preset-pink-d);
+  --chapter-ink: var(--preset-pink-l);
+  position: relative;
+}
+
+:root[data-theme="light"] .legal {
+  --chapter-fill: var(--preset-pink-l);
+  --chapter-ink: var(--preset-pink-d);
+}
+
+.legal::before {
+  content: "";
+  position: absolute;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 480px;
+  background: radial-gradient(closest-side, var(--warm-glow), transparent 70%);
+  pointer-events: none;
+}
+
+.legal .docs-content h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.legal .callout.legal-accept {
+  margin: 0 0 56px;
+}
+
+.legal .legal-meta {
+  margin-bottom: 28px;
+}
+
+.legal .docs-section h3 {
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  margin: 32px 0 8px;
+}
+
+/* FAQ */
+
+.manual .faq-item {
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.manual .faq-item:first-of-type {
+  padding-top: 0;
+}
+
+.manual .faq-item:last-of-type {
+  border-bottom: none;
+}
+
+.manual .faq-item h3 {
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-strip a,
+  .section-tab::after {
+    transition: none;
+  }
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 920px) {
@@ -1218,6 +1801,98 @@ table.docs-table th:first-child {
   .docs-toc nav {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  /* The tree collapses behind an "On this page" button instead of wrapping. */
+  .docs-toc {
+    max-height: none;
+    overflow: visible;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .docs-toc .toc-title {
+    display: none;
+  }
+
+  .toc-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    color: var(--text);
+    font: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .toc-toggle:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .toc-toggle svg {
+    transition: transform 0.15s ease;
+  }
+
+  .toc-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .docs-toc .toc-tree {
+    display: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 20px 4px 4px;
+  }
+
+  .toc-toggle[aria-expanded="true"] + .toc-title + .toc-tree {
+    display: flex;
+  }
+}
+
+@media (max-width: 920px) and (prefers-reduced-motion: reduce) {
+  .toc-toggle svg {
+    transition: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .tier-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .manual-head {
+    padding-top: 44px;
+  }
+
+  .manual-head .lead {
+    margin-bottom: 28px;
+  }
+
+  /* Scrolls edge to edge, so a tab cut off at the screen's edge reads as more to come. */
+  .chapter-strip {
+    margin: 0 -24px;
+    padding: 0 24px;
+    scroll-padding: 0 24px;
+  }
+
+  .manual.docs-shell {
+    padding-top: 32px;
+  }
+
+  .section-tab {
+    padding: 6px 14px 6px 12px;
+  }
+
+  .manual .docs-section h2,
+  .manual .docs-section:first-of-type h2 {
+    font-size: 1rem;
   }
 }
 
