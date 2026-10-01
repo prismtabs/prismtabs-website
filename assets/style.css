@@ -207,19 +207,72 @@ svg {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 56px;
-  font-size: 14.5px;
+  gap: 32px;
+  font-size: 15px;
 }
 
-.nav-links a {
+.nav-links a:not(.btn) {
+  position: relative;
+  font-weight: 500;
   text-decoration: none;
   color: var(--text-muted);
   transition: color 0.15s ease;
 }
 
-.nav-links a:hover,
+/* Amber-to-pink underline, drawn from the left on hover and kept on the current page. */
+.nav-links a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--headline-from), var(--headline-to));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.nav-links a:not(.btn):hover,
+.nav-links a:not(.btn):focus-visible,
 .nav-links a[aria-current="page"] {
   color: var(--text);
+}
+
+.nav-links a:not(.btn):hover::after,
+.nav-links a:not(.btn):focus-visible::after,
+.nav-links a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.nav-links .btn {
+  margin-left: 8px;
+  padding: 5px 14px;
+  font-size: 14px;
+}
+
+.site-nav a:focus-visible,
+.site-nav button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* Wide enough offset that the underline sits inside the ring instead of crossing it. */
+.nav-links a:not(.btn):focus-visible {
+  outline-offset: 8px;
+}
+
+.nav-links .btn:focus-visible {
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links a:not(.btn),
+  .nav-links a:not(.btn)::after {
+    transition: none;
+  }
 }
 
 .nav-toggle {
@@ -321,34 +374,6 @@ svg {
   height: 500px;
   background: radial-gradient(closest-side, var(--warm-glow), transparent 70%);
   pointer-events: none;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: var(--bg-card);
-  font-size: 13px;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: 24px;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-a.eyebrow:hover {
-  border-color: var(--accent-green);
-  color: var(--text);
-}
-
-.eyebrow .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  box-shadow: 0 0 0 3px rgba(111, 207, 154, 0.18);
 }
 
 .hero-grid {
@@ -1209,9 +1234,31 @@ table.docs-table th:first-child {
     transition: transform 0.2s ease;
   }
 
-  .nav-links a {
+  .nav-links a:not(.btn) {
     width: 100%;
-    padding: 12px 8px;
+    padding: 12px 12px;
+  }
+
+  /* A vertical bar replaces the underline, which would span the full row. */
+  .nav-links a:not(.btn)::after {
+    inset: 10px auto 10px 0;
+    width: 2px;
+    height: auto;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .nav-links a:not(.btn):hover::after,
+  .nav-links a:not(.btn):focus-visible::after,
+  .nav-links a[aria-current="page"]::after {
+    transform: scaleY(1);
+  }
+
+  .nav-links .btn {
+    width: 100%;
+    margin: 16px 0 0;
+    padding: 12px 24px;
+    font-size: 15px;
   }
 
   .nav-toggle {
