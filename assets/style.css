@@ -437,26 +437,26 @@ svg {
 }
 
 .hero-shot img {
+  display: block;
   width: 100%;
   height: auto;
 }
 
-/* Theme-matched screenshot: dark by default, light only when the light
+/* Theme-matched screenshots: dark by default, light only when the light
    theme is explicitly set. The inline <head> script always stamps
    data-theme before first paint, so only one ever renders. */
-.hero-shot img.hero-shot-dark {
-  display: block;
-}
-
-.hero-shot img.hero-shot-light {
+img.shot-light,
+.section-shot img.shot-light {
   display: none;
 }
 
-:root[data-theme="light"] .hero-shot img.hero-shot-dark {
+:root[data-theme="light"] img.shot-dark,
+:root[data-theme="light"] .section-shot img.shot-dark {
   display: none;
 }
 
-:root[data-theme="light"] .hero-shot img.hero-shot-light {
+:root[data-theme="light"] img.shot-light,
+:root[data-theme="light"] .section-shot img.shot-light {
   display: block;
 }
 
