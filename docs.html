@@ -28,7 +28,6 @@
       </button>
       <nav class="nav-links" id="navLinks">
         <a href="index.html#features">Features</a>
-        <a href="index.html#pricing">Pricing</a>
         <a href="docs.html" aria-current="page">Docs</a>
         <a class="btn btn-primary" href="https://plugins.jetbrains.com/plugin/34416-prismtabs?noRedirect=true" target="_blank" rel="noopener">Get plugin</a>
       </nav>
@@ -63,7 +62,7 @@
         <div class="toc-group" data-chapter="setup">
           <div class="toc-chapter"><span class="chapter-dot" aria-hidden="true"></span>Setup</div>
           <a href="#getting-started">Getting started</a>
-          <a href="#licensing">Licensing &amp; the free trial</a>
+          <a href="#licensing">Licensing</a>
         </div>
         <div class="toc-group" data-chapter="groups">
           <div class="toc-chapter"><span class="chapter-dot" aria-hidden="true"></span>Groups</div>
@@ -94,63 +93,22 @@
         <p>
           Install PrismTabs from the JetBrains Marketplace inside your IDE:
           <span class="kbd-path">Settings → Plugins → Marketplace</span>, search "PrismTabs",
-          click Install, then restart the IDE if prompted.
+          click Install. No IDE restart is needed.
         </p>
         <p>PrismTabs needs no setup beyond installation. The moment it's enabled you can right-click any open editor tab to start colouring it.</p>
         <div class="callout">
-          <strong>Requirement:</strong> IntelliJ Platform 2025.1 or newer. See
+          <strong>Requirement:</strong> IntelliJ Platform 2024.2 or newer. See
           <a href="#compatibility">Compatibility</a> for which IDEs that covers.
         </div>
       </section>
 
       <section class="docs-section" id="licensing" data-chapter="setup">
-        <h2><a class="section-tab" href="#licensing"><span class="chapter-dot" aria-hidden="true"></span>Licensing &amp; the free trial</a></h2>
+        <h2><a class="section-tab" href="#licensing"><span class="chapter-dot" aria-hidden="true"></span>Licensing</a></h2>
         <p>
-          PrismTabs licensing runs in three stages:
+          PrismTabs is free. Every feature in this manual works for everyone, with no trial,
+          subscription or licence key. Using the plugin is covered by the
+          <a href="eula.html">End-User Licence Agreement</a>.
         </p>
-        <ol class="stage-list">
-          <li class="stage">
-            <span class="stage-when">Day 0</span>
-            <p><strong>Install and start the trial.</strong> No card, and no licence key to enter: click <strong>Evaluate for free</strong> in the IDE's registration dialog, which PrismTabs opens the first time you reach for a Pro feature. The Pro features unlock as soon as the dialog closes, including in a PrismTabs tool window that is already open.</p>
-          </li>
-          <li class="stage stage--pro">
-            <span class="stage-when">Days 1–14</span>
-            <p><strong>Everything unlocked.</strong> Everyone gets the complete Pro feature set, free, for the first 14 days. Nothing is held back during the trial.</p>
-          </li>
-          <li class="stage">
-            <span class="stage-when">Day 15 onward</span>
-            <p><strong>Free, or from $14/year.</strong> Subscribe to keep the Pro features ($14 a year or $1.40 a month for individuals, $29 a year or $2.90 a month per user for organisations), or carry on indefinitely with the Free tier below.</p>
-          </li>
-        </ol>
-        <p>The split between the two tiers is feature-based, never a cap on how many groups you can make:</p>
-        <div class="tier-compare">
-          <div class="tier-col tier-col--free">
-            <h3><span class="tier-tag tier-tag--free">Free</span></h3>
-            <ul>
-              <li>Assigning tabs to the 8 preset colours</li>
-              <li>Unlimited named groups (create, rename, recolour, delete)</li>
-              <li><a href="#membership">Listing a group's files</a> whether or not their tabs are open</li>
-              <li>Persistence across restarts</li>
-              <li>Assignments that follow a file through a rename or move</li>
-            </ul>
-          </div>
-          <div class="tier-col tier-col--pro">
-            <h3><span class="tier-tag tier-tag--pro">Pro</span></h3>
-            <ul>
-              <li>The <a href="#tool-window">PrismTabs tool window</a></li>
-              <li><a href="#hiding">Hide/show</a></li>
-              <li><a href="#active-group">Active-group auto-join</a></li>
-              <li><a href="#palette">Palette editing</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="callout">
-          <strong>Never a hard lockout.</strong> When the trial ends or a subscription lapses,
-          PrismTabs simply drops back to the Free tier — your existing group assignments, names,
-          and colours are untouched, and Pro features come straight back the moment you subscribe.
-          Nothing is deleted and nothing stops working outright.
-        </div>
-        <p>The subscription is billed yearly or monthly through the JetBrains Marketplace; paying yearly is the same as getting two months free. See <a href="index.html#pricing">Pricing</a> for the full breakdown.</p>
       </section>
 
       <section class="docs-section" id="assigning" data-chapter="groups">
@@ -173,7 +131,7 @@
           <dt><span class="command">Manage Groups…</span></dt>
           <dd>Shown once at least one group exists; opens the rename, recolour, active-group, and delete actions covered in <a href="#groups">Working with groups</a>.</dd>
           <dt><span class="command">Remove from Group</span></dt>
-          <dd>Only shown when the tab is currently assigned; clears the assignment and the tint. If that was the group's last member, PrismTabs offers to delete the empty group.</dd>
+          <dd>Only shown when the tab is currently assigned, under an <em>In group:</em> caption naming its group; clears the assignment and the tint. If that was the group's last member, PrismTabs offers to delete the empty group.</dd>
         </dl>
       </section>
 
@@ -186,7 +144,7 @@
         </p>
         <dl class="command-list">
           <dt><span class="command">Files…</span></dt>
-          <dd>Lists every file in the group, open tab or not; see <a href="#membership">What's in a group</a>.</dd>
+          <dd>Lists every file in the group, open tab or not; see <a href="#membership">What's in a group</a>. Not offered for an empty group.</dd>
           <dt><span class="command">Rename…</span></dt>
           <dd>Change the group's display name.</dd>
           <dt><span class="command">Recolour…</span></dt>
@@ -206,9 +164,9 @@
           of its group. Two places list them, so a member whose tab is shut is never lost:
         </p>
         <dl class="command-list">
-          <dt><span class="command">Files…</span> <span class="tier-tag tier-tag--free">Free</span></dt>
+          <dt><span class="command">Files…</span></dt>
           <dd>In the swatch popup, <strong>Manage Groups…</strong> → the group → <strong>Files…</strong>. A titled chooser lists every member by name with its greyed project-relative directory, sorted by path, with type-to-filter search. Click one to open it — if its tab is already open, it's brought to the front.</dd>
-          <dt><span class="command">The tool window tree</span> <span class="tier-tag tier-tag--pro">Pro</span></dt>
+          <dt><span class="command">The tool window tree</span></dt>
           <dd>Expand a group row to the same list, always on screen; see <a href="#tool-window">the tool window</a>.</dd>
         </dl>
         <p>
@@ -219,7 +177,7 @@
       </section>
 
       <section class="docs-section" id="active-group" data-chapter="groups">
-        <h2><a class="section-tab" href="#active-group"><span class="chapter-dot" aria-hidden="true"></span>Active groups</a> <span class="tier-tag tier-tag--pro">Pro</span></h2>
+        <h2><a class="section-tab" href="#active-group"><span class="chapter-dot" aria-hidden="true"></span>Active groups</a></h2>
         <p>
           Mark one group <strong>active</strong> and every file you open afterwards joins it
           automatically — no assigning each tab by hand. A file that's already in a group stays
@@ -240,13 +198,12 @@
           on its own. That's a platform limit, not a bug: IntelliJ raises no event for opening a
           file that's already open, so there's nothing for PrismTabs to react to. Right-click that
           tab and the popup carries an <strong>Add to Group "&lt;name&gt;"</strong> row naming the
-          active group — one click, no need to close and reopen the file, and no subscription
-          needed either: assigning a tab by hand stays free, same as every other manual assignment.
+          active group — one click, no need to close and reopen the file.
         </p>
       </section>
 
       <section class="docs-section" id="tool-window" data-chapter="tools">
-        <h2><a class="section-tab" href="#tool-window"><span class="chapter-dot" aria-hidden="true"></span>The PrismTabs tool window</a> <span class="tier-tag tier-tag--pro">Pro</span></h2>
+        <h2><a class="section-tab" href="#tool-window"><span class="chapter-dot" aria-hidden="true"></span>The PrismTabs tool window</a></h2>
         <p>
           Open the <strong>PrismTabs</strong> stripe on the right-hand edge of the IDE window (or
           find it under <span class="kbd-path">View → Tool Windows → PrismTabs</span>). It's a
@@ -285,7 +242,7 @@
       </section>
 
       <section class="docs-section" id="hiding" data-chapter="tools">
-        <h2><a class="section-tab" href="#hiding"><span class="chapter-dot" aria-hidden="true"></span>Hiding &amp; showing</a> <span class="tier-tag tier-tag--pro">Pro</span></h2>
+        <h2><a class="section-tab" href="#hiding"><span class="chapter-dot" aria-hidden="true"></span>Hiding &amp; showing</a></h2>
         <p>
           PrismTabs doesn't collapse a group into an in-strip chip; instead,
           <strong>hiding means "close and remember"</strong>:
@@ -297,25 +254,17 @@
           <dd>Reopens each of those files, in the same order, in the background — your current tab stays active.</dd>
         </dl>
         <p>Use it to get a crowded group out of the way without losing track of what was open in it — the group stays listed in the tool window (marked "hidden") the whole time, and expanding it still shows every file it holds. A group reads as hidden whenever it has members and none of their tabs is open, however they were closed; an empty group is neither hidden nor shown, so the toggle is greyed out on one.</p>
-        <div class="callout">
-          <strong>A hidden group is never held hostage.</strong> If your trial or subscription ends
-          while a group is hidden, the tool window still opens — it shows a locked panel in place of
-          the group list — and that panel carries a one-click <em>Reopen the tabs of N hidden
-          groups</em> link. It sits outside the paywall precisely because hiding is what closed them: it
-          reopens those tabs and nothing more, so hide/show itself stays Pro.
-        </div>
       </section>
 
       <section class="docs-section" id="palette" data-chapter="tools">
-        <h2><a class="section-tab" href="#palette"><span class="chapter-dot" aria-hidden="true"></span>The palette</a> <span class="tier-tag tier-tag--pro">Pro to edit</span></h2>
+        <h2><a class="section-tab" href="#palette"><span class="chapter-dot" aria-hidden="true"></span>The palette</a></h2>
         <p>
           PrismTabs ships 8 presets, each with a separate light-theme and dark-theme colour.
           IntelliJ applies a group colour as a tint over the tab rather than a solid fill, and on
           an unselected tab it uses roughly half the tint strength it gives the active one — so a
           colour that only looked right on the active tab would wash out across the rest of the
-          bar. Every preset is picked to stay legible after that lighter blend as well. The 8
-          presets are free to use as they ship; renaming or repainting them is a Pro feature
-          (see below).
+          bar. Every preset is picked to stay legible after that lighter blend as well. Use the
+          presets as they ship, or rename and repaint them (see below).
         </p>
         <table class="docs-table palette-table">
           <thead><tr><th scope="col">Preset</th><th scope="col">Light theme</th><th scope="col">Dark theme</th></tr></thead>
@@ -340,7 +289,6 @@
           one step.
         </p>
         <p>This is an IDE-level preference, not a per-project setting — it follows you the same way an editor colour scheme would, across every project you open.</p>
-        <p>A palette you customised while subscribed keeps being offered if the subscription lapses — the settings page simply greys its fields out. The Free tier loses the ability to edit the palette, not the colours you already saved.</p>
       </section>
 
       <section class="docs-section" id="persistence" data-chapter="reference">
@@ -367,14 +315,8 @@
           PrismTabs is built on the IntelliJ Platform rather than on any one product, so it runs
           in IntelliJ IDEA, WebStorm, PyCharm, GoLand, PhpStorm, Rider, RubyMine, CLion, DataGrip,
           Android Studio, and any other IDE built on the same platform, from
-          <strong>2025.1</strong> onward. It's tested against both the classic and the Islands tab
+          <strong>2024.2</strong> onward. It's tested against both the classic and the Islands tab
           painters, in light and dark themes alike.
-        </p>
-        <p>
-          PrismTabs needs the <strong>JetBrains Marketplace Licensing</strong> plugin, which checks
-          your trial or subscription. JetBrains IDEs include it already; in an IDE that doesn't,
-          such as Android Studio, the IDE installs it along with PrismTabs. Removing it disables
-          PrismTabs as well.
         </p>
       </section>
 
@@ -407,28 +349,8 @@
         </div>
 
         <div class="faq-item">
-          <h3>Is there a one-time, perpetual licence option?</h3>
-          <p>No — PrismTabs Pro is a subscription only, billed yearly or monthly: $14 a year or $1.40 a month for individuals, and $29 a year or $2.90 a month per user for organisations. See <a href="#licensing">Licensing &amp; the free trial</a> for what stays free without one.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>What happens when the 14-day trial ends?</h3>
-          <p>Without an active subscription, PrismTabs drops to the Free tier: hide/show, active-group auto-join, and palette editing stop working, and the PrismTabs tool window shows a locked panel — with a link to <a href="#hiding">reopen the tabs of any group left hidden</a> — in place of the group list. Nothing is deleted, and the core tab-colouring workflow keeps working.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>What happens if my Pro subscription lapses?</h3>
-          <p>The same downgrade as an expired trial — back to the Free tier, not a frozen or crippled state. Renewing brings the Pro features straight back with your existing groups and assignments intact.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Is PrismTabs Pro free for open-source projects?</h3>
-          <p>Yes, for non-commercial open-source development. PrismTabs takes part in the JetBrains Marketplace open-source programme, and JetBrains decides who qualifies: once your JetBrains Account has open-source status, sign in to the JetBrains Marketplace and claim a free licence from the PrismTabs pricing page. See <a href="https://plugins.jetbrains.com/docs/marketplace/community-programs.html">special community offers</a> for how to apply. The licence lasts as long as the programme's terms allow; when it ends, PrismTabs drops back to the Free tier, just as when a subscription lapses.</p>
-        </div>
-
-        <div class="faq-item">
           <h3>I&rsquo;ve found a bug, or I want to request a feature. Where do I go?</h3>
-          <p>The <a href="https://github.com/prismtabs/prismtabs-feedback">PrismTabs feedback tracker</a> on GitHub, which covers both, for every edition &mdash; Free, Pro and the trial alike. Billing, invoices and licence activation are handled by JetBrains, since PrismTabs is sold through the JetBrains Marketplace &mdash; manage those from your <a href="https://account.jetbrains.com/">JetBrains Account</a>. For anything else that shouldn&rsquo;t be public, email <a href="mailto:contact@prismtabs.com">contact@prismtabs.com</a>.</p>
+          <p>The <a href="https://github.com/prismtabs/prismtabs-feedback">PrismTabs feedback tracker</a> on GitHub, which covers both. For anything that shouldn&rsquo;t be public, email <a href="mailto:contact@prismtabs.com">contact@prismtabs.com</a>.</p>
         </div>
       </section>
     </main>
