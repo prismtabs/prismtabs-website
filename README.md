@@ -70,7 +70,7 @@ other side's push lands. On a push, both workflows therefore wait five minutes a
 mismatch, fetch the other repository again, and check once more before reporting drift. Pull
 requests, the schedule, and manual runs fail on the first mismatch.
 
-Each workflow reads one file from the other, private, repository. That needs a credential, and the
+Each workflow reads one file from the other repository. That needs a credential, and the
 credential is a **read-only deploy key** rather than a personal access token: a deploy key never
 expires and is scoped to a single repository, so there is no annual re-issue and no access to
 anything else in the account. Two keys are needed, one per direction:

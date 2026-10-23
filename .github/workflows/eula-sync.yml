@@ -1,7 +1,7 @@
 # Verify that the docs/EULA.md mirror in the plugin repository still matches the
 # canonical Agreement, eula.html, published from this repository.
 #
-# The mirror lives in a different, private repository, so this needs a
+# The mirror lives in a different repository, so this needs a
 # credential with read access to it: a read-only deploy key, which never
 # expires. See "Keeping the EULA in sync" in the README.
 #
